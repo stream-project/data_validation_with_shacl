@@ -1,0 +1,32 @@
+[
+   {
+      "id":"Run_RDFUnit",
+      "execute-command":"/bin/sh",
+      "command-working-directory":"/opt/webhook",
+      "response-message":"Put dataset in queue.",
+      "pass-arguments-to-command":[
+         {
+            "source":"string",
+            "name":"/opt/webhook/hook_script.sh"
+         },
+         {
+            "source":"payload",
+            "name":"id"
+         }
+      ],
+      "trigger-rule":{
+         "and":[
+            {
+               "match":{
+                  "type":"value",
+                  "value":"secret",
+                  "parameter":{
+                     "source":"header",
+                     "name":"Authorization"
+                  }
+               }
+            }
+         ]
+      }
+   }
+]
