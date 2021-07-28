@@ -6,10 +6,12 @@ pipe=/opt/webhook/pipe/host_executor_queue
 while :; do
     while read -r datasetid; do
         dt=$(date '+%Y/%m/%d %H:%M:%S')
+        # TODO handle wrong values
+        
         if [ "$datasetid" ]; then
-            wall "$dt : Fifo value: $service"
+            echo "$dt : Fifo value: $datasetid" >> /proc/1/fd/1
             # execute script
-            
+            ./prepare_ttl_files.sh $datasetid
         fi
     done <"$pipe"
     sleep 30s
