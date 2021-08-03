@@ -11,6 +11,6 @@ curl -G $SPARQL_ENDPOINT  --data-urlencode query='construct {  ?s ?p ?o } where 
 curl -G $SPARQL_ENDPOINT  --data-urlencode query='construct {  ?s ?p ?o } where { ?s ?p ?o }' --data-urlencode default-graph-uri=$SPARQL_GRAPH_SHAPES --data-urlencode format='text/turtle' > shapes.ttl
 
 # Execute RDFUnit
-java -jar /app/rdfunit-validate.jar -d ./data.ttl -s ./shapes.ttl -f /tmp/ -o turtle -A >> /proc/1/fd/1
+java -jar /app/rdfunit-validate.jar -d ./data.ttl -s ./shapes.ttl -f /tmp/ -o turtle --result-level shacl -A >> /proc/1/fd/1
 mkdir /var/www/html/reports/$ID/
-cp /tmp/results/._data.ttl.aggregatedTestCaseResult.ttl $DIR_REPORT_BASE/$ID/report.ttl
+cp /tmp/results/._data.ttl.shaclTestCaseResult.ttl $DIR_REPORT_BASE/$ID/report.ttl
