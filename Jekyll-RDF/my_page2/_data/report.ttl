@@ -1,0 +1,35 @@
+@prefix schema: <http://schema.org/> .
+@prefix dsp:   <http://dublincore.org/dc-dsp#> .
+@prefix rutg:  <http://rdfunit.aksw.org/data/generators#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rlog:  <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rutp:  <http://rdfunit.aksw.org/data/patterns#> .
+@prefix oslc:  <http://open-services.net/ns/core#> .
+@prefix rut:   <http://rdfunit.aksw.org/ns/core#> .
+@prefix rutr:  <http://rdfunit.aksw.org/data/results#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rutt:  <http://rdfunit.aksw.org/data/tests#> .
+@prefix ruts:  <http://rdfunit.aksw.org/data/testsuite#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix urn:   <http://stream-dataspace.net/reports/> .
+
+<http://stream-dataspace.net/reports/c0ec8a2a-8911-4692-88da-905f48a5bb06>
+        a                          prov:Activity , rut:TestExecution , sh:ValidationReport ;
+        rut:executionType          "shaclLiteTestCaseResult" ;
+        rut:source                 <./data.ttl> ;
+        rut:testsError             "0"^^xsd:nonNegativeInteger ;
+        rut:testsFailed            "0"^^xsd:nonNegativeInteger ;
+        rut:testsRun               "6"^^xsd:nonNegativeInteger ;
+        rut:testsSuceedded         "6"^^xsd:nonNegativeInteger ;
+        rut:testsTimeout           "0"^^xsd:nonNegativeInteger ;
+        rut:totalIndividualErrors  "0"^^xsd:nonNegativeInteger ;
+        prov:endedAtTime           "2021-07-28T14:04:02.485Z"^^xsd:dateTime ;
+        prov:startedAtTime         "2021-07-28T14:04:02.421Z"^^xsd:dateTime ;
+        prov:wasAssociatedWith     <./shapes.ttl> ;
+        prov:wasStartedBy          <http://localhost/> ;
+        sh:conforms                true .

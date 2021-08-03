@@ -1,0 +1,6 @@
+.vendor
+.bundle
+Gemfile.lock
+_site
+.jekyll-cache
+entrypoint.sh

@@ -1,0 +1,29 @@
+---
+rdf_prefix_path: "_data/prefixes.sparql"
+---
+<h1>{{ page.rdf | rdf_property: "rut:executionType" }}</h1>
+{{ page.rdf }} started {{ page.rdf | rdf_property: "prov:startedAtTime" }}
+
+<table>
+    <tr>
+        <th>Tests run</th>
+        <th>Tests suceeded</th>
+        <th>Tests failed</th>
+        <th>Tests with errors</th>
+        <th>Tests with timeout</th>
+        <th>Total individual errors</th>
+    </tr>
+    <tr>
+        <td>{{ page.rdf | rdf_property: "rut:testsRun" }}</td>
+        <td>{{ page.rdf | rdf_property: "rut:testsSuceedded" }}</td>
+        <td>{{ page.rdf | rdf_property: "rut:testsFailed" }}</td>
+        <td>{{ page.rdf | rdf_property: "rut:testsError" }}</td>
+        <td>{{ page.rdf | rdf_property: "rut:testsTimeout" }}</td>
+        <td>{{ page.rdf | rdf_property: "rut:totalIndividualErrors" }}</td>
+    </tr>
+</table>
+<br>
+
+<h3>
+    Conforms: {{ page.rdf | rdf_property: "sh:conforms", nil, true }}
+</h3>
