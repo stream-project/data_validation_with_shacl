@@ -3,10 +3,6 @@ url: "http://localhost" # the base hostname & protocol for your site, e.g. http:
 
 plugins:
    - jekyll-rdf
-   
-exclude: 
-    "entrypoint.sh"
-    "rdfsites/"
 
 # Jekyll RDF settings
 jekyll_rdf:

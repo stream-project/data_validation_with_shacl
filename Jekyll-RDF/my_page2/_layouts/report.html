@@ -1,10 +1,12 @@
 ---
 rdf_prefix_path: "_data/prefixes.sparql"
+layout: default
+title: RDFUnit report
 ---
 <h1>{{ page.rdf | rdf_property: "rut:executionType" }}</h1>
 {{ page.rdf }} started {{ page.rdf | rdf_property: "prov:startedAtTime" }}
 
-<table>
+<table class="table">
     <tr>
         <th>Tests run</th>
         <th>Tests suceeded</th>
