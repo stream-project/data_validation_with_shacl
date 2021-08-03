@@ -12,5 +12,11 @@ curl -G $SPARQL_ENDPOINT  --data-urlencode query='construct {  ?s ?p ?o } where 
 
 # Execute RDFUnit
 java -jar /app/rdfunit-validate.jar -d ./data.ttl -s ./shapes.ttl -f /tmp/ -o turtle --result-level shacl -A >> /proc/1/fd/1
-mkdir /var/www/html/reports/$ID/
-cp /tmp/results/._data.ttl.shaclTestCaseResult.ttl $DIR_REPORT_BASE/$ID/report.ttl
+
+# Prepare data file for Jekyll RDF
+sed -i -e 's/urn:uuid:/http:\/\/stream-dataspace.net\/reports\//g' /tmp/results/._data.ttl.shaclTestCaseResult.ttl
+mkdir -p /var/www/html/reports/_data/
+cat /tmp/results/._data.ttl.shaclTestCaseResult.ttl >> /var/www/html/reports/_data/report.ttl
+rapper -i turtle -o turtle /var/www/html/reports/_data/report.ttl > /var/www/html/reports/_data/report2.ttl
+rm -f /var/www/html/reports/_data/report.ttl
+mv /var/www/html/reports/_data/report2.ttl /var/www/html/reports/_data/report.ttl

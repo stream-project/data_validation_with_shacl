@@ -1,6 +1,6 @@
 FROM aksw/rdfunit
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y webhook curl
+RUN apt-get update && apt-get upgrade -y && apt-get install -y webhook curl raptor2-utils
 
 RUN mkdir -p /opt/webhook/pipe && mkfifo /opt/webhook/pipe/host_executor_queue && mkdir -p /var/www/html/reports
 
