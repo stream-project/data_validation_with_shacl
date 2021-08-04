@@ -11,4 +11,4 @@ jekyll_rdf:
     baseiri: "http://stream-dataspace.net/reports/"
     include_blank: true
     class_template_mappings:
-        "http://www.w3.org/ns/shacl#ValidationReport": "report.html"
+        "http://stream-dataspace.net/vocab/TestResult": "report.html"

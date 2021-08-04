@@ -1,35 +1,84 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix schema: <http://schema.org/> .
-@prefix dsp:   <http://dublincore.org/dc-dsp#> .
-@prefix rutg:  <http://rdfunit.aksw.org/data/generators#> .
-@prefix owl:   <http://www.w3.org/2002/07/owl#> .
-@prefix rlog:  <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#> .
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix rutp:  <http://rdfunit.aksw.org/data/patterns#> .
-@prefix oslc:  <http://open-services.net/ns/core#> .
-@prefix rut:   <http://rdfunit.aksw.org/ns/core#> .
-@prefix rutr:  <http://rdfunit.aksw.org/data/results#> .
-@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix sh:    <http://www.w3.org/ns/shacl#> .
-@prefix rutt:  <http://rdfunit.aksw.org/data/tests#> .
-@prefix ruts:  <http://rdfunit.aksw.org/data/testsuite#> .
+@prefix dsp: <http://dublincore.org/dc-dsp#> .
+@prefix rutg: <http://rdfunit.aksw.org/data/generators#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rlog: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rutp: <http://rdfunit.aksw.org/data/patterns#> .
+@prefix oslc: <http://open-services.net/ns/core#> .
+@prefix rut: <http://rdfunit.aksw.org/ns/core#> .
+@prefix rutr: <http://rdfunit.aksw.org/data/results#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rutt: <http://rdfunit.aksw.org/data/tests#> .
+@prefix ruts: <http://rdfunit.aksw.org/data/testsuite#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix prov:  <http://www.w3.org/ns/prov#> .
-@prefix dc:    <http://purl.org/dc/elements/1.1/> .
-@prefix urn:   <http://stream-dataspace.net/reports/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 
-<http://stream-dataspace.net/reports/c0ec8a2a-8911-4692-88da-905f48a5bb06>
-        a                          prov:Activity , rut:TestExecution , sh:ValidationReport ;
-        rut:executionType          "shaclLiteTestCaseResult" ;
-        rut:source                 <./data.ttl> ;
-        rut:testsError             "0"^^xsd:nonNegativeInteger ;
-        rut:testsFailed            "0"^^xsd:nonNegativeInteger ;
-        rut:testsRun               "6"^^xsd:nonNegativeInteger ;
-        rut:testsSuceedded         "6"^^xsd:nonNegativeInteger ;
-        rut:testsTimeout           "0"^^xsd:nonNegativeInteger ;
-        rut:totalIndividualErrors  "0"^^xsd:nonNegativeInteger ;
-        prov:endedAtTime           "2021-07-28T14:04:02.485Z"^^xsd:dateTime ;
-        prov:startedAtTime         "2021-07-28T14:04:02.421Z"^^xsd:dateTime ;
-        prov:wasAssociatedWith     <./shapes.ttl> ;
-        prov:wasStartedBy          <http://localhost/> ;
-        sh:conforms                true .
+<http://stream-dataspace.net/reports/shacl>
+    <http://stream-dataspace.net/vocab/hasTestResult> <urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3> ;
+    a <http://stream-dataspace.net/vocab/TestResult> .
+
+<urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3>
+    rut:executionType "shaclTestCaseResult" ;
+    rut:source <file:///var/www/html/reports/_data/data.ttl> ;
+    rut:testsError "0"^^xsd:nonNegativeInteger ;
+    rut:testsFailed "1"^^xsd:nonNegativeInteger ;
+    rut:testsRun "32"^^xsd:nonNegativeInteger ;
+    rut:testsSuceedded "31"^^xsd:nonNegativeInteger ;
+    rut:testsTimeout "0"^^xsd:nonNegativeInteger ;
+    rut:totalIndividualErrors "3"^^xsd:nonNegativeInteger ;
+    a rut:TestExecution, prov:Activity, sh:ValidationReport ;
+    prov:endedAtTime "2021-08-04T16:25:00.644Z"^^xsd:dateTime ;
+    prov:startedAtTime "2021-08-04T16:25:00.417Z"^^xsd:dateTime ;
+    prov:wasAssociatedWith <file:///var/www/html/reports/_data/shapes.ttl> ;
+    prov:wasStartedBy <http://localhost/> ;
+    sh:conforms false ;
+    sh:result <urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3/4f2bbd1b-e6ce-4fc6-a370-b05bd50963d2>, <urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3/d9ebecb1-6097-4ef9-8867-94f921038cad>, <urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3/f7b9e48a-9766-4c85-bffd-24b6b6f42acb> .
+
+<urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3/4f2bbd1b-e6ce-4fc6-a370-b05bd50963d2>
+    dcterms:date "2021-08-04T16:25:00.565Z"^^xsd:dateTime ;
+    rut:testCase [
+        a <urn:uuid:97250133-82b9-439a-b8ee-077c9d32e164>
+    ] ;
+    a rut:TestCaseResult, sh:ValidationResult ;
+    prov:wasGeneratedBy <urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3> ;
+    sh:focusNode <http://example.com/Bob> ;
+    sh:message "shape is closed and allows only the following properties: \"\" or <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
+    sh:resultMessage "shape is closed and allows only the following properties: {$allowedProperties} or {$ignoredProperties}" ;
+    sh:resultSeverity sh:Violation ;
+    sh:severity rlog:ERROR ;
+    sh:sourceConstraintComponent sh:ClosedConstraintComponent ;
+    sh:sourceShape <http://example.de/PersonShape4> .
+
+<urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3/d9ebecb1-6097-4ef9-8867-94f921038cad>
+    dcterms:date "2021-08-04T16:25:00.566Z"^^xsd:dateTime ;
+    rut:testCase [
+        a <urn:uuid:97250133-82b9-439a-b8ee-077c9d32e164>
+    ] ;
+    a rut:TestCaseResult, sh:ValidationResult ;
+    prov:wasGeneratedBy <urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3> ;
+    sh:focusNode <http://example.com/Calvin> ;
+    sh:message "shape is closed and allows only the following properties: \"\" or <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
+    sh:resultMessage "shape is closed and allows only the following properties: {$allowedProperties} or {$ignoredProperties}" ;
+    sh:resultSeverity sh:Violation ;
+    sh:severity rlog:ERROR ;
+    sh:sourceConstraintComponent sh:ClosedConstraintComponent ;
+    sh:sourceShape <http://example.de/PersonShape4> .
+
+<urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3/f7b9e48a-9766-4c85-bffd-24b6b6f42acb>
+    dcterms:date "2021-08-04T16:25:00.564Z"^^xsd:dateTime ;
+    rut:testCase [
+        a <urn:uuid:97250133-82b9-439a-b8ee-077c9d32e164>
+    ] ;
+    a rut:TestCaseResult, sh:ValidationResult ;
+    prov:wasGeneratedBy <urn:uuid:4a68cacf-6de1-4800-aac1-0fc3c6be12b3> ;
+    sh:focusNode <http://example.com/Alice> ;
+    sh:message "shape is closed and allows only the following properties: \"\" or <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
+    sh:resultMessage "shape is closed and allows only the following properties: {$allowedProperties} or {$ignoredProperties}" ;
+    sh:resultSeverity sh:Violation ;
+    sh:severity rlog:ERROR ;
+    sh:sourceConstraintComponent sh:ClosedConstraintComponent ;
+    sh:sourceShape <http://example.de/PersonShape4> .

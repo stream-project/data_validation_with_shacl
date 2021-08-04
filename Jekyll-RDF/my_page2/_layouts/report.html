@@ -3,29 +3,39 @@ rdf_prefix_path: "_data/prefixes.sparql"
 layout: default
 title: RDFUnit report
 ---
-<h1>{{ page.rdf | rdf_property: "rut:executionType" }}</h1>
-{{ page.rdf }} started {{ page.rdf | rdf_property: "prov:startedAtTime" }}
+{% capture validationreport_query %}
+SELECT ?report WHERE {
+    {
+        ?resourceUri <http://stream-dataspace.net/vocab/hasTestResult> ?report
+    }
+}
+{% endcapture %}
+{% assign reports = page.rdf | sparql_query: validationreport_query %}
+{% for row in reports %}
+    <h1>{{ row.report | rdf_property: "rut:executionType" }}</h1>
+    {{ row.report }} started {{ row.report | rdf_property: "prov:startedAtTime" }}
 
-<table class="table">
-    <tr>
-        <th>Tests run</th>
-        <th>Tests suceeded</th>
-        <th>Tests failed</th>
-        <th>Tests with errors</th>
-        <th>Tests with timeout</th>
-        <th>Total individual errors</th>
-    </tr>
-    <tr>
-        <td>{{ page.rdf | rdf_property: "rut:testsRun" }}</td>
-        <td>{{ page.rdf | rdf_property: "rut:testsSuceedded" }}</td>
-        <td>{{ page.rdf | rdf_property: "rut:testsFailed" }}</td>
-        <td>{{ page.rdf | rdf_property: "rut:testsError" }}</td>
-        <td>{{ page.rdf | rdf_property: "rut:testsTimeout" }}</td>
-        <td>{{ page.rdf | rdf_property: "rut:totalIndividualErrors" }}</td>
-    </tr>
-</table>
-<br>
+    <table class="table">
+        <tr>
+            <th>Tests run</th>
+            <th>Tests suceeded</th>
+            <th>Tests failed</th>
+            <th>Tests with errors</th>
+            <th>Tests with timeout</th>
+            <th>Total individual errors</th>
+        </tr>
+        <tr>
+            <td>{{ row.report | rdf_property: "rut:testsRun" }}</td>
+            <td>{{ row.report | rdf_property: "rut:testsSuceedded" }}</td>
+            <td>{{ row.report | rdf_property: "rut:testsFailed" }}</td>
+            <td>{{ row.report | rdf_property: "rut:testsError" }}</td>
+            <td>{{ row.report | rdf_property: "rut:testsTimeout" }}</td>
+            <td>{{ row.report | rdf_property: "rut:totalIndividualErrors" }}</td>
+        </tr>
+    </table>
+    <br>
 
-<h3>
-    Conforms: {{ page.rdf | rdf_property: "sh:conforms", nil, true }}
-</h3>
+    <h3>
+        Conforms: {{ row.report | rdf_property: "sh:conforms", nil, true }}
+    </h3>
+{% endfor %}
