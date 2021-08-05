@@ -10,10 +10,19 @@ SELECT ?report WHERE {
     }
 }
 {% endcapture %}
+{% capture results_query %}
+SELECT ?result WHERE {
+    {
+        ?resourceUri sh:result ?result
+    }
+}
+{% endcapture %}
 {% assign reports = page.rdf | sparql_query: validationreport_query %}
 {% for row in reports %}
-    <h1>{{ row.report | rdf_property: "rut:executionType" }}</h1>
-    {{ row.report }} started {{ row.report | rdf_property: "prov:startedAtTime" }}
+    <h1>{{ row.report | rdf_property: "rut:executionType" }} for <script type="text/javascript">
+        document.write('{{ page.rdf }}'.replace("http://stream-dataspace.net/reports/", ""))
+    </script></h1>
+    {{ row.report }} started <mark>{{ row.report | rdf_property: "prov:startedAtTime" }}</mark>
 
     <table class="table">
         <tr>
@@ -38,4 +47,39 @@ SELECT ?report WHERE {
     <h3>
         Conforms: {{ row.report | rdf_property: "sh:conforms", nil, true }}
     </h3>
+    <br>
+    <br>
+    {% assign results = row.report | sparql_query: results_query %}
+    {% for row in results %}
+        <h3>Validation result</h3>
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+                <td>Source Shape</td>
+                <td><code>{{ row.result | rdf_property: "sh:sourceShape" }}</code></td>
+            </tr>
+            <tr>
+                <td>Tested subject</td>
+                <td><code>{{ row.result | rdf_property: "sh:focusNode" }}</code></td>
+            </tr>
+            <tr>
+                <td>Severity</td>
+                <td><code>{{ row.result | rdf_property: "sh:severity" }}</code></td>
+            </tr>
+            <tr>
+                <td>Result severity</td>
+                <td><code>{{ row.result | rdf_property: "sh:resultSeverity" }}</code></td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td><code><script type="text/javascript">document.write('{{ row.result | rdf_property: "sh:message" }}'.replace("<", "&lt;").replace(">", "&gt;"))</script></code></td>
+            </tr>
+            <tr>
+                <td>Result Message</td>
+                <td><code><script type="text/javascript">document.write('{{ row.result | rdf_property: "sh:resultMessage" }}'.replace("<", "&lt;").replace(">", "&gt;"))</script></code></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+    {% endfor %}
 {% endfor %}
