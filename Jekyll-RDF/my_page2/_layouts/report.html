@@ -23,7 +23,8 @@ SELECT ?result WHERE {
         document.write('{{ page.rdf }}'.replace("http://stream-dataspace.net/reports/", ""))
     </script></h1>
     {{ row.report }} started <mark>{{ row.report | rdf_property: "prov:startedAtTime" }}</mark>
-
+    <br>
+    <br>
     <table class="table">
         <tr>
             <th>Tests run</th>
@@ -43,14 +44,13 @@ SELECT ?result WHERE {
         </tr>
     </table>
     <br>
-
     <h3>
         Conforms: {{ row.report | rdf_property: "sh:conforms", nil, true }}
     </h3>
     <br>
-    <br>
     {% assign results = row.report | sparql_query: results_query %}
     {% for row in results %}
+        <br>
         <h3>Validation result</h3>
         <table class="table table-striped">
           <tbody>
@@ -80,6 +80,6 @@ SELECT ?result WHERE {
             </tr>
           </tbody>
         </table>
-        <br>
     {% endfor %}
+     <hr/>
 {% endfor %}
