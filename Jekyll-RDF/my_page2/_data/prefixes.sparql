@@ -18,3 +18,4 @@ PREFIX ownshaclcorrectness: <http://stream-ontology.com/maturitymodel/shapes/Cor
 PREFIX msv: <http://stream-ontology.com/metrics-severity/>
 PREFIX mme: <http://stream-ontology.com/maturitymodel/executions/>
 PREFIX sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>

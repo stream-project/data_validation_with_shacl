@@ -16,6 +16,23 @@
 @prefix mme: <http://stream-ontology.com/maturitymodel/executions/> .
 @prefix sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#> .
 
+#################################################################
+#    Instances of msv
+#################################################################
+
+msv:MaturityLevel0 a msv:MaturityLevel ;
+  msv:hasRequiredRatingOf 0 ;
+  msv:level 0 ;
+  rdfs:label "Maturity level 0"@en ;
+  dc:description "The maturity level which has no requirements and thus applies to every dataset."@en .
+
+msv:MaturityLevel1 a msv:MaturityLevel ;
+  msv:hasRequiredRatingOf 32 ;
+  msv:level 1 ;
+  rdfs:label "Maturity level 1"@en ;
+  dc:description "The maturity level which has the highest requirements in which all dimensions have to have the maximum rating value."@en .
+###############################################
+
 # Data cube definitions
 :refMeasurement  a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference measurement set"@en ;
@@ -239,12 +256,16 @@
 mme:QMD1 a dqv:QualityMeasurementDataset ; # subclas of qb:DataSet
   rdfs:label "Quality measurement dataset #1"@en ;
   rdfs:description "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
-  prov:startedAtTime "2022-03-08T17:23:53.888Z"^^xsd:dateTime .
+  prov:startedAtTime "2022-03-08T17:23:53.888Z"^^xsd:dateTime ;
+  msv:hasMaturityLevel msv:MaturityLevel1 .
 
 mme:QMD2 a dqv:QualityMeasurementDataset ; # subclas of qb:DataSet
   rdfs:label "Quality measurement dataset #2"@en ;
   rdfs:description "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
   prov:startedAtTime "2022-03-28T17:23:53.888Z"^^xsd:dateTime .
+
+# MSV Maturity level data - generated from dimension ratings
+
 
 # Data cube observations which are also dqv:QualityMeasurements <- all synthetic
 mme:QM1 a dqv:QualityMeasurement;

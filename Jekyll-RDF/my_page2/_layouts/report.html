@@ -27,9 +27,55 @@ SELECT (SUM(?a) as ?x) WHERE {
 }  group by ?report ?dimension
 {% endcapture %}
 
+{% capture maturity_level_query %}
+SELECT ?ml WHERE {
+  ?ml a msv:MaturityLevel .
+  ?resourceUri msv:hasMaturityLevel ?ml .
+}
+{% endcapture %}
+
+{% capture maturity_max_level_query %}
+SELECT (max(?level) as ?l) WHERE {
+      ?ml a msv:MaturityLevel ;
+  		msv:level ?level	.
+}
+{% endcapture %}
+{% assign max_level = 1 %}
+{% assign levels = page.rdf | sparql_query: maturity_max_level_query %}
+{% for l in levels %}
+  {% assign max_level = l.l %}
+{% endfor %}
+
+{% capture overall_rating_query %}
+SELECT (SUM(?a) as ?x) WHERE {
+  ?qm mme:refMeasurement ?resourceUri ;
+      mme:measurementValue ?a .
+}
+{% endcapture %}
+
 <h1>Quality dimension reports for {{ page.rdf | replace: "http://stream-ontology.com/maturitymodel/executions/", "" }} execution</h1>
 {{ page.rdf | rdf_property: "rdfs:label" }} started <mark>{{ page.rdf | rdf_property: "prov:startedAtTime" }}</mark>
 <br>
+{% assign rating = page.rdf | sparql_query: overall_rating_query | first %}
+  The rating is: <b>{{ rating.x }}</b>
+<br />
+<br />
+{% assign mls = page.rdf | sparql_query: maturity_level_query %}
+{% for ml in mls %}
+  <b><u>Maturity level: {{ ml.ml | rdf_property: "msv:level" }}   (from maximal {{ max_level }})</u></b>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+          <td>
+            <code>{{ ml.ml | rdf_property: "dc:description" }}</code>
+          </td>
+          <td>
+            <code>Required rating points: {{ ml.ml | rdf_property: "msv:hasRequiredRatingOf" }}</code>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+{% endfor %}
 <br>
 {% assign categories = page.rdf | sparql_query: categories_query %}
 {% for row in categories %}
