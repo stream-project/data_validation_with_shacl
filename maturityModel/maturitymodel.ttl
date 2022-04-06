@@ -20,15 +20,9 @@
 :refMeasurement  a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference measurement set"@en ;
   rdfs:range dqv:Dimension .
-:refMetric  a rdf:Property, qb:DimensionProperty ;
-  rdfs:label "reference metric"@en ;
-  rdfs:range dqv:Metric .
 :refDimension  a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference dimension"@en ;
   rdfs:range dqv:Dimension .
-:measurementValue a rdf:Property, qb:MeasureProperty ;
-  rdfs:label "measurement severity"@en ;
-  rdfs:range xsd:integer .
 
 :dataset1 a qb:DataSet;
   rdfs:label "Data cube dataset"@en;
@@ -39,9 +33,9 @@
   # The dimensions
   qb:component [ qb:dimension :refMeasurement; qb:order 1 ] ;
   qb:component [ qb:dimension :refDimension; qb:order 2 ] ;
-  qb:component [ qb:dimension :refMetric; qb:order 3 ] ;
+  qb:component [ qb:dimension dqv:isMeasurementOf; qb:order 3 ] ;
   # The measure(s)
-  qb:component [ qb:measure :measurementValue ] .
+  qb:component [ qb:measure dqv:value ] .
 ################################################
 
 # Maturity model
@@ -254,11 +248,9 @@ mme:QMD2 a dqv:QualityMeasurementDataset ; # subclas of qb:DataSet
 mme:QM1 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M1 ;
-  mme:refDimension :Correctness ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :Correctness ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 4 ;
   # dqv
   dqv:isMeasurementOf :M1 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -266,11 +258,9 @@ mme:QM1 a dqv:QualityMeasurement;
 mme:QM2 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M2 ;
-  mme:refDimension :Precision ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :Precision ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 1 ;
   # dqv
   dqv:isMeasurementOf :M2 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -278,11 +268,9 @@ mme:QM2 a dqv:QualityMeasurement;
 mme:QM3 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M3 ;
-  mme:refDimension :Sensitiveness ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :Sensitiveness ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 2 ;
   # dqv
   dqv:isMeasurementOf :M3 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -290,11 +278,9 @@ mme:QM3 a dqv:QualityMeasurement;
 mme:QM4 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M4 ;
-  mme:refDimension :Conciseness ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :Conciseness ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 1 ;
   # dqv
   dqv:isMeasurementOf :M4 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -302,11 +288,9 @@ mme:QM4 a dqv:QualityMeasurement;
 mme:QM5 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M5 ;
-  mme:refDimension :UsageCML ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :UsageCML ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 1 ;
   # dqv
   dqv:isMeasurementOf :M5 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -314,11 +298,9 @@ mme:QM5 a dqv:QualityMeasurement;
 mme:QM6 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M6 ;
-  mme:refDimension :Validity ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :Validity ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 10 ;
   # dqv
   dqv:isMeasurementOf :M6 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -326,11 +308,9 @@ mme:QM6 a dqv:QualityMeasurement;
 mme:QM7 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M7 ;
-  mme:refDimension :Plausibility ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :Plausibility ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 10 ;
   # dqv
   dqv:isMeasurementOf :M7 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -338,11 +318,9 @@ mme:QM7 a dqv:QualityMeasurement;
 mme:QM8 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M8 ;
-  mme:refDimension :Uniqueness ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :Uniqueness ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 1 ;
   # dqv
   dqv:isMeasurementOf :M8 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -350,11 +328,9 @@ mme:QM8 a dqv:QualityMeasurement;
 mme:QM9 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M9 ;
-  mme:refDimension :English ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :English ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 1 ;
   # dqv
   dqv:isMeasurementOf :M9 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
@@ -362,11 +338,9 @@ mme:QM9 a dqv:QualityMeasurement;
 mme:QM10 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M10 ;
-  mme:refDimension :German ;
+  :refMeasurement mme:QMD1 ;
+  :refDimension :German ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 1 ;
   # dqv
   dqv:isMeasurementOf :M10 ;
   dqv:computedOn <http://stream-ontology.com/data/1> ;
