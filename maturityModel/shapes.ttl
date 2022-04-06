@@ -1,0 +1,30 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix ns0: <http://rdfunit.aksw.org/ns/core#> .
+@prefix ns1: <http://www.w3.org/ns/shacl#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dq: <http://purl.org/linked-data/cube#> .
+@prefix : <http://stream-ontology.com/maturitymodel/> .
+@prefix ownshaclcorrectness: <http://stream-ontology.com/maturitymodel/shapes/Correctness/> .
+@prefix msv: <http://stream-ontology.com/metrics-severity/> .
+@prefix mme: <http://stream-ontology.com/maturitymodel/executions/> .
+
+# SHACL
+ownshaclcorrectness:1
+	a sh:NodeShape ;
+	sh:targetClass ex:Country ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;   # This triple is optional
+		sh:message "Datatype is known."@en ;
+		sh:prefixes : ;
+		sh:select """
+
+			""" ;
+	] ;
+  rdfs:seeAlso :M1 .
