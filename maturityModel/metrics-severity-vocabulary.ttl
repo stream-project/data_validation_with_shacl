@@ -43,32 +43,27 @@
 :hasRatingValueOf a owl:DataTypeProperty ;
   rdfs:label "has rating value of"@en ;
   rdfs:comment "A higher number means a higher rating and thus has more weight in calculation of a dqv:Dimensions degree of fulfullment."@en ;
-  rdfs:domain dqv:Metric ;
-  rdfs:range xsd:integer .
+  rdfs:domain dqv:Metric .
 
 :hasMaximumRatingValueOf a owl:DataTypeProperty ;
   rdfs:label "has maximum rating value of"@en ;
   rdfs:comment "The maximum number of corresponding ratings when they are at maximum."@en ;
-  rdfs:domain dqv:Dimension ;
-  rdfs:range xsd:integer .
+  rdfs:domain dqv:Dimension .
 
 :hasMinimumRequiredRatingOf a owl:DataTypeProperty ;
   rdfs:label "has minimum required rating of"@en ;
   rdfs:comment "The minimum overall rating this dimension should have."@en ;
-  rdfs:domain dqv:Dimension ;
-  rdfs:range xsd:integer .
+  rdfs:domain dqv:Dimension .
 
 :hasRequiredRatingOf a owl:DataTypeProperty ;
   rdfs:label "has required rating of"@en ;
   rdfs:comment "The minimum overall rating this dimension should have."@en ;
-  rdfs:domain :MaturityLevel ;
-  rdfs:range xsd:integer .
+  rdfs:domain :MaturityLevel .
 
 :level a owl:DataTypeProperty ;
   rdfs:label "level"@en ;
   rdfs:comment "The level of maturity as a number."@en ;
-  rdfs:domain :MaturityLevel ;
-  rdfs:range xsd:integer .
+  rdfs:domain :MaturityLevel .
 
 
 
