@@ -230,13 +230,13 @@
     rdfs:seeAlso mme:QM1 .
 
 # Measurements of dqv
-mme:QMD1 a dqv:QualityMeasurementDataset ; # subclas of qb:DataSet
+mme:QMD1 a dqv:QualityMeasurementDataset ; # subclass of qb:DataSet
   rdfs:label "Quality measurement dataset #1"@en ;
   rdfs:description "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
   prov:startedAtTime "2022-03-08T17:23:53.888Z"^^xsd:dateTime ;
   msv:hasMaturityLevel :MaturityLevel1 .
 
-mme:QMD2 a dqv:QualityMeasurementDataset ; # subclas of qb:DataSet
+mme:QMD2 a dqv:QualityMeasurementDataset ; # subclass of qb:DataSet
   rdfs:label "Quality measurement dataset #2"@en ;
   rdfs:description "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
   prov:startedAtTime "2022-03-28T17:23:53.888Z"^^xsd:dateTime .
@@ -250,11 +250,12 @@ mme:QM1 a dqv:QualityMeasurement;
   qb:dataSet :dataset1 ;
   :refMeasurement mme:QMD1 ;
   :refDimension :Correctness ;
+  dqv:isMeasurementOf :M1 ;
+  dqv:value 4 ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
   # dqv
-  dqv:isMeasurementOf :M1 ;
-  dqv:computedOn <http://stream-ontology.com/data/1> ;
-  dqv:value 4 .
+  dqv:computedOn <http://stream-ontology.com/data/1> .
+# the following QualityMeasurements properties are not well sorted
 mme:QM2 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;
