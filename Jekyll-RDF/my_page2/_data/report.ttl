@@ -9,6 +9,7 @@
 @prefix ns0: <http://rdfunit.aksw.org/ns/core#> .
 @prefix ns1: <http://www.w3.org/ns/shacl#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix qb: <http://purl.org/linked-data/cube#> .
 @prefix : <http://stream-ontology.com/maturitymodel/> .
 @prefix ownshaclcorrectness: <http://stream-ontology.com/maturitymodel/shapes/Correctness/> .
@@ -18,45 +19,59 @@
 
 #################################################################
 #    Instances of msv
+# Maturity levels choosen by the rating value
 #################################################################
+
+msv:Motivation a oa:Motivation ;
+  rdfs:label "Motivation to execute a dataset quality measurement pipeline" ;
+  rdfs:comment "Motivation to execute a dataset quality measurement pipeline using a maturity model and creating a report in HTML." .
 
 msv:MaturityLevel0 a msv:MaturityLevel ;
   msv:hasRequiredRatingOf 0 ;
   msv:level 0 ;
+  oa:hasTarget <http://example.de/dataset1> ; # has to be changed when another dataset is valdiated
+  oa:motivatedBy msv:Motivation ;
+  oa:hasBody mme:QMD1 ; # has to be changed on each testset execution
   rdfs:label "Maturity level 0"@en ;
   dc:description "The maturity level which has no requirements and thus applies to every dataset."@en .
 
 msv:MaturityLevel1 a msv:MaturityLevel ;
   msv:hasRequiredRatingOf 32 ;
   msv:level 1 ;
+  oa:hasTarget <http://example.de/dataset1> ; # has to be changed when another dataset is valdiated
+  oa:motivatedBy msv:Motivation ;
+  oa:hasBody mme:QMD1 ; # has to be changed on each testset execution
   rdfs:label "Maturity level 1"@en ;
   dc:description "The maturity level which has the highest requirements in which all dimensions have to have the maximum rating value."@en .
+
+#################################################################
+#    Dataset which was tested
+#################################################################
+
+<http://example.de/dataset1> a dcat:Dataset ;
+  rdfs:label "Dataset 1" .
+
 ###############################################
 
 # Data cube definitions
-:refMeasurement  a rdf:Property, qb:DimensionProperty ;
-  rdfs:label "reference measurement set"@en ;
-  rdfs:range dqv:Dimension .
 :refMetric  a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference metric"@en ;
   rdfs:range dqv:Metric .
-:refDimension  a rdf:Property, qb:DimensionProperty ;
-  rdfs:label "reference dimension"@en ;
-  rdfs:range dqv:Dimension .
+:refDate  a rdf:Property, qb:DimensionProperty ;
+  rdfs:label "reference date"@en ;
+  rdfs:range dcterms:date . # is xsd:dateTime better?
+:refResource  a rdf:Property, qb:DimensionProperty ;
+  rdfs:label "reference resource"@en ;
+  rdfs:range rdfs:Resource .
 :measurementValue a rdf:Property, qb:MeasureProperty ;
   rdfs:label "measurement severity"@en ;
   rdfs:range xsd:integer .
 
-:dataset1 a qb:DataSet;
-  rdfs:label "Data cube dataset"@en;
-  rdfs:comment ""@en;
-  qb:structure :dsd .
-
 :dsd a qb:DataStructureDefinition;
   # The dimensions
-  qb:component [ qb:dimension :refMeasurement; qb:order 1 ] ;
-  qb:component [ qb:dimension :refDimension; qb:order 2 ] ;
-  qb:component [ qb:dimension :refMetric; qb:order 3 ] ;
+  qb:component [ qb:dimension :refMetric; qb:order 1 ] ;
+  qb:component [ qb:dimension :refDate; qb:order 2 ] ;
+  qb:component [ qb:dimension :refResource; qb:order 3 ] ;
   # The measure(s)
   qb:component [ qb:measure :measurementValue ] .
 ################################################
@@ -220,13 +235,14 @@ msv:MaturityLevel1 a msv:MaturityLevel ;
   skos:definition "A language detector detected german."@en ;
   dqv:expectedDataType xsd:integer ;
   msv:hasRatingValueOf "1"^^xsd:integer .
+
 ################################################
 
 # RDFUnit results
 <urn:uuid:4891544a-f12c-4e0f-be3f-36968a422ce7>
     a prov:Activity, <http://rdfunit.aksw.org/ns/core#TestExecution>, <http://www.w3.org/ns/shacl#ValidationReport> ;
     ns0:executionType "aggregatedTestCaseResult"^^xsd:string ;
-    ns0:source <http://stream-ontology.com/data/1> ;
+    ns0:source <http://example.de/dataset1> ;
     ns0:testsError "0"^^xsd:nonNegativeInteger ;
     ns0:testsFailed "0"^^xsd:nonNegativeInteger ;
     ns0:testsRun "1"^^xsd:nonNegativeInteger ;
@@ -252,34 +268,31 @@ msv:MaturityLevel1 a msv:MaturityLevel ;
     ns0:testCaseLogLevel <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#ERROR> ;
     prov:wasGeneratedBy <urn:uuid:4891544a-f12c-4e0f-be3f-36968a422ce7> .
 
-# Measurements of dqv
+# QMD used to group measurements
+# has to be generated per testset execution
 mme:QMD1 a dqv:QualityMeasurementDataset ; # subclas of qb:DataSet
   rdfs:label "Quality measurement dataset #1"@en ;
   rdfs:description "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
   prov:startedAtTime "2022-03-08T17:23:53.888Z"^^xsd:dateTime ;
-  msv:hasMaturityLevel msv:MaturityLevel1 .
-
-mme:QMD2 a dqv:QualityMeasurementDataset ; # subclas of qb:DataSet
-  rdfs:label "Quality measurement dataset #2"@en ;
-  rdfs:description "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
-  prov:startedAtTime "2022-03-28T17:23:53.888Z"^^xsd:dateTime .
-
-# MSV Maturity level data - generated from dimension ratings
-
+  qb:structure :dsd .
 
 # Data cube observations which are also dqv:QualityMeasurements <- all synthetic
 mme:QM1 a dqv:QualityMeasurement;
   # Data cube
-  qb:dataSet :dataset1 ;
-  mme:refMeasurement mme:QMD1 ;
-  mme:refMetric :M1 ;
-  mme:refDimension :Correctness ;
+  qb:dataSet mme:QMD1 ;
+  :refMetric :M1 ;
+  :refDate "2022-03-08T17:23:53.753Z"^^xsd:dateTime ;
+  :refResource <http://example.de/dataset1> ;
   sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;# no concept known for this
-  mme:measurementValue 4 ;
+  :measurementValue 4 ;
   # dqv
   dqv:isMeasurementOf :M1 ;
-  dqv:computedOn <http://stream-ontology.com/data/1> ;
+  dqv:computedOn <http://example.de/dataset1> ;
   dqv:value 4 .
+
+
+# the following QualityMeasurements properties are not well sorted
+# And old!
 mme:QM2 a dqv:QualityMeasurement;
   # Data cube
   qb:dataSet :dataset1 ;

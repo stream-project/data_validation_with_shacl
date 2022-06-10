@@ -11,6 +11,7 @@
 @prefix schema: <https://schema.org/> .
 @prefix dcterms: <http://purl.org/dc/terms> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix : <http://stream-ontology.com/metrics-severity/> .
 
 <http://stream-ontology.com/metrics-severity/> rdf:type owl:Ontology ;
@@ -33,34 +34,34 @@
 :hasMaturityLevel a owl:ObjectProperty ;
   rdfs:label "has maturity level"@en ;
   rdfs:comment "The measured maturity level."@en ;
-  rdfs:domain dqv:QualityMeasurementDataset ;
+  rdfs:domain dcat:Dataset ;
   rdfs:range :MaturityLevel .
 
 #################################################################
 #    Datatype properties
 #################################################################
 
-:hasRatingValueOf a owl:DataTypeProperty ;
+:hasRatingValueOf a owl:DatatypeProperty ;
   rdfs:label "has rating value of"@en ;
   rdfs:comment "A higher number means a higher rating and thus has more weight in calculation of a dqv:Dimensions degree of fulfullment."@en ;
   rdfs:domain dqv:Metric .
 
-:hasMaximumRatingValueOf a owl:DataTypeProperty ;
+:hasMaximumRatingValueOf a owl:DatatypeProperty ;
   rdfs:label "has maximum rating value of"@en ;
   rdfs:comment "The maximum number of corresponding ratings when they are at maximum."@en ;
   rdfs:domain dqv:Dimension .
 
-:hasMinimumRequiredRatingOf a owl:DataTypeProperty ;
+:hasMinimumRequiredRatingOf a owl:DatatypeProperty ;
   rdfs:label "has minimum required rating of"@en ;
   rdfs:comment "The minimum overall rating this dimension should have."@en ;
   rdfs:domain dqv:Dimension .
 
-:hasRequiredRatingOf a owl:DataTypeProperty ;
+:hasRequiredRatingOf a owl:DatatypeProperty ;
   rdfs:label "has required rating of"@en ;
   rdfs:comment "The minimum overall rating this dimension should have."@en ;
   rdfs:domain :MaturityLevel .
 
-:level a owl:DataTypeProperty ;
+:level a owl:DatatypeProperty ;
   rdfs:label "level"@en ;
   rdfs:comment "The level of maturity as a number."@en ;
   rdfs:domain :MaturityLevel .
@@ -71,21 +72,31 @@
 #    Classes
 #################################################################
 
-:MaturityLevel a owl:Class ;
+:MaturityLevel a dqv:QualityCertificate ;
   rdfs:label "Maturity level"@en .
 
 #################################################################
 #    Instances
 #################################################################
 
+:Motivation a oa:Motivation ;
+  rdfs:label "Motivation to execute a dataset quality measurement pipeline" ;
+  rdfs:comment "Motivation to execute a dataset quality measurement pipeline using a maturity model and creating a report in HTML." .
+
 :MaturityLevel0 a :MaturityLevel ;
   :hasRequiredRatingOf 0 ;
   :level 0 ;
+  oa:hasTarget <http://example.de/dataset1> ; # has to be changed when another dataset is valdiated
+  oa:motivatedBy :Motivation ;
+  oa:hasBody mme:QMD1 ; # has to be changed on each testset execution
   rdfs:label "Maturity level 0"@en ;
   dc:description "The maturity level which has no requirements and thus applies to every dataset."@en .
 
 :MaturityLevel1 a :MaturityLevel ;
   :hasRequiredRatingOf 32 ;
   :level 1 ;
+  oa:hasTarget <http://example.de/dataset1> ; # has to be changed when another dataset is valdiated
+  oa:motivatedBy :Motivation ;
+  oa:hasBody mme:QMD1 ; # has to be changed on each testset execution
   rdfs:label "Maturity level 1"@en ;
   dc:description "The maturity level which has the highest requirements in which all dimensions have to have the maximum rating value."@en .
