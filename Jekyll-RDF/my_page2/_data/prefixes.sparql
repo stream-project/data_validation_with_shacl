@@ -19,3 +19,4 @@ PREFIX msv: <http://stream-ontology.com/metrics-severity/>
 PREFIX mme: <http://stream-ontology.com/maturitymodel/executions/>
 PREFIX sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX oa: <http://www.w3.org/ns/oa#>
