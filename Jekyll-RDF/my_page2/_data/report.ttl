@@ -251,11 +251,10 @@ msv:MaturityLevel1 a msv:MaturityLevel ;
     ns0:totalIndividualErrors "0"^^xsd:nonNegativeInteger ;
     prov:endedAtTime "2022-03-08T17:23:53.888Z"^^xsd:dateTime ;
     prov:startedAtTime "2022-03-08T17:23:53.753Z"^^xsd:dateTime ;
-    prov:wasAssociatedWith ownshaclcorrectness:1 ;
     prov:wasStartedBy <http://localhost/> ;
     ns1:conforms true ;
     ns1:result <urn:uuid:4891544a-f12c-4e0f-be3f-36968a422ce7/fc56c7a9-79bf-4586-9622-42a6d8a2e11f> ;
-    rdfs:seeAlso mme:QM1 .
+    rdfs:seeAlso mme:QMD1 .
 
 <urn:uuid:4891544a-f12c-4e0f-be3f-36968a422ce7/fc56c7a9-79bf-4586-9622-42a6d8a2e11f>
     a ns0:StatusTestCaseResult, ns0:AggregatedTestResult, ns0:TestCaseResult ;
@@ -265,6 +264,7 @@ msv:MaturityLevel1 a msv:MaturityLevel ;
     ns0:resultPrevalence 32 ;
     ns0:resultStatus ns0:ResultStatusSuccess ;
     ns0:testCase [ a <http://rdfunit.aksw.org/data/tests#class_names_camel_case> ] ;
+    prov:wasAssociatedWith :M1 ;
     ns0:testCaseLogLevel <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#ERROR> ;
     prov:wasGeneratedBy <urn:uuid:4891544a-f12c-4e0f-be3f-36968a422ce7> .
 

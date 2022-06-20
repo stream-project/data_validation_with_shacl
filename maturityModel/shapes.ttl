@@ -1,13 +1,18 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rlog:    <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#> .
+@prefix rutg: <http://rdfunit.aksw.org/data/generators#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rut: <http://rdfunit.aksw.org/ns/core#> .
+@prefix rutp: <http://rdfunit.aksw.org/data/patterns#> .
+@prefix rutt: <http://rdfunit.aksw.org/data/tests#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix ns0: <http://rdfunit.aksw.org/ns/core#> .
-@prefix ns1: <http://www.w3.org/ns/shacl#> .
+@prefix spin: <http://spinrdf.org/spin#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
 @prefix dq: <http://purl.org/linked-data/cube#> .
 @prefix : <http://stream-ontology.com/maturitymodel/> .
@@ -16,15 +21,59 @@
 @prefix mme: <http://stream-ontology.com/maturitymodel/executions/> .
 
 # SHACL
-ownshaclcorrectness:1
-	a sh:NodeShape ;
-	sh:targetClass ex:Country ;
-	sh:sparql [
-		a sh:SPARQLConstraint ;   # This triple is optional
-		sh:message "Datatype is known."@en ;
-		sh:prefixes : ;
-		sh:select """
 
-			""" ;
-	] ;
-  rdfs:seeAlso :M1 .
+ownshaclcorrectness:1
+    a rut:ManualTestCase ;
+    dcterms:description "The ontology should provide some basic metadata, like rdfs:comment, dct:creator, rdfs:label, owl:versionInfo, dct:modified and owl:priorVersion." ;
+    rut:appliesTo rut:Schema ;
+    rut:generated rut:ManuallyGenerated ;
+    rut:references rdf:Property, owl:DatatypeProperty, owl:ObjectProperty ;
+    rut:source <http://www.w3.org/2000/01/rdf-schema#> ;
+    rut:sparqlWhere """ {
+      ?this a owl:Ontology.
+      FILTER not exists {
+      	?this rdfs:comment ?co ;
+             owl:versionInfo ?vi ;
+             dcterms:creator ?c ;
+             rdfs:label ?l ;
+             dcterms:modified ?m ;
+             owl:priorVersion ?pv .
+      }
+         }""" ;
+    rut:sparqlPrevalence """ SELECT (count(?this) AS ?total) WHERE {
+      ?this a owl:Ontology.
+          } """ ;
+
+    rut:testCaseLogLevel
+              rlog:WARN ;
+    rdfs:seeAlso :M1 .
+
+ownshaclcorrectness:2
+    a rut:ManualTestCase ;
+    dcterms:description "Classes should be expressive and not include class in its name." ;
+    rut:appliesTo rut:Schema ;
+    rut:generated rut:ManuallyGenerated ;
+    rut:references owl:Class ;
+    rut:source <http://www.w3.org/2000/01/rdf-schema#> ;
+    rut:sparqlWhere """ {
+      ?this a owl:Class .
+      ?ontology a owl:Ontology.
+      FILTER (
+        strStarts(str(?this), str(?ontology))
+      )
+      bind(substr(str(?this), strlen(str(?ontology))) as ?className)
+      FILTER (
+        REGEX(STR(?className), "class", "i")
+      )
+         }""" ;
+    rut:sparqlPrevalence """ SELECT (count(?this) AS ?total) WHERE {
+      ?this a owl:Class .
+      ?ontology a owl:Ontology.
+      FILTER (
+        strStarts(str(?this), str(?ontology))
+      )
+          } """ ;
+
+    rut:testCaseLogLevel
+              rlog:WARN ;
+    rdfs:seeAlso :M2 .
