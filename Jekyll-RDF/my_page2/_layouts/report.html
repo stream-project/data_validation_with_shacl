@@ -7,7 +7,7 @@ title: Maturity model report
 {% capture categories_query %}
 SELECT distinct ?category WHERE {
   ?qm qb:dataSet ?resourceUri ;
-      :refMetric ?metric .
+      mm:refMetric ?metric .
   ?metric dqv:inDimension ?dimension .
   ?dimension dqv:inCategory ?category .
 }  order by ASC(?category)
@@ -22,7 +22,7 @@ SELECT distinct ?dimension WHERE {
 {% capture dimension_rating_query %}
 SELECT (SUM(?a) as ?x) WHERE {
   ?qm qb:dataSet ?resourceUri_0 ;
-      :refMetric ?metric ;
+      mm:refMetric ?metric ;
       dqv:value ?a .
   ?metric dqv:inDimension ?resourceUri_1 .
 }  group by ?report ?dimension
@@ -104,7 +104,7 @@ SELECT (SUM(?a) as ?x) WHERE {
     {% assign query = 'SELECT distinct ?metric ?qm WHERE { ?qm qb:dataSet ?resourceUri_0 ; dqv:isMeasurementOf ?metric . ?metric dqv:inDimension ?resourceUri_1 }' %}
     {% assign metrics = array | sparql_query: query %}
     {% for row3 in metrics %}
-      <h5>Validation result {{ row3.metric | replace: "http://stream-ontology.com/maturitymodel/", "" }}</h5>
+      <h5>Validation result {{ row3.metric | split: "/" | last }}</h5>
       <table class="table table-striped">
         <tbody>
           <tr>
@@ -118,7 +118,7 @@ SELECT (SUM(?a) as ?x) WHERE {
           <tr>
               <td>Severity</td>
               <td>
-                {% assign query2 = 'SELECT ?y WHERE { ?resourceUri :measurementValue ?y . }' %}
+                {% assign query2 = 'SELECT ?y WHERE { ?resourceUri mm:measurementValue ?y . }' %}
                 {% assign values = row3.qm | sparql_query: query2 %}
                 {% for row4 in values %}
                   <code>Rating value: {{ row4.y }}</code>

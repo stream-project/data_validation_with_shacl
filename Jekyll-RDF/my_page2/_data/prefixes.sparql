@@ -13,7 +13,7 @@ PREFIX ns0: <http://rdfunit.aksw.org/ns/core#>
 PREFIX ns1: <http://www.w3.org/ns/shacl#>
 PREFIX dqv: <http://www.w3.org/ns/dqv#>
 PREFIX qb: <http://purl.org/linked-data/cube#>
-PREFIX : <http://stream-ontology.com/maturitymodel/>
+PREFIX mm: <http://stream-ontology.com/maturitymodel/>
 PREFIX ownshaclcorrectness: <http://stream-ontology.com/maturitymodel/shapes/Correctness/>
 PREFIX msv: <http://stream-ontology.com/metrics-severity/>
 PREFIX mme: <http://stream-ontology.com/maturitymodel/executions/>

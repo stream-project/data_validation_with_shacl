@@ -6,7 +6,6 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ns0: <http://rdfunit.aksw.org/ns/core#> .
-@prefix ownshaclcorrectness: <http://stream-ontology.com/maturitymodel/shapes/Correctness/> .
 @prefix msv: <http://stream-ontology.com/metrics-severity/> .
 @prefix qb: <http://purl.org/linked-data/cube#> .
 @prefix dc11: <http://purl.org/dc/elements/1.1/> .
@@ -18,75 +17,61 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
 msv:MaturityLevel0  oa:hasTarget  <http://example.de/dataset1> ;
-        oa:hasBody    mme:c25701d8-0ebd-462f-927e-86330d64c185 .
+        oa:hasBody    mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff .
 
 <http://example.de/dataset1>
         msv:hasMaturityLevel  msv:MaturityLevel0 .
 
-ownshaclcorrectness:2
-        rdfs:seeAlso  :M2 .
+<http://stream-ontology.com/maturitymodel/shapes/Correctness/2>
+        rdfs:seeAlso  <http://example.domain.net/path/M2> .
 
-_:b0    qb:dimension  :refMetric ;
-        qb:order      1 .
+_:b0    qb:dimension  :refDate ;
+        qb:order      2 .
 
-<urn:uuid:03e800d7-4a98-4c22-a5fb-08734924e189>
-        :measurementValue           0 ;
-        dqv:value                   0 ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        rdf:type                    dqv:QualityMeasurement ;
-        :refResource                <http://example.de/dataset1> ;
-        :refMetric                  :M1 ;
-        dqv:isMeasurementOf         :M1 ;
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-:M8     msv:hasRatingValueOf  1 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "The combination of the values is unique."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :Uniqueness .
-
-:dsd    qb:component  _:b0 ;
-        qb:component  _:b1 ;
+:dsd    qb:component  _:b1 ;
+        qb:component  _:b0 ;
         qb:component  _:b2 ;
         qb:component  _:b3 ;
         rdf:type      qb:DataStructureDefinition .
 
-:M2     msv:hasRatingValueOf  1 ;
+<http://example.domain.net/path/M8>
+        msv:hasRatingValueOf  1 ;
         rdf:type              dqv:Metric ;
-        skos:definition       "At least two decimals are provided."@en ;
+        skos:definition       "The combination of the values is unique."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :Precision .
+        dqv:inDimension       <http://example.domain.net/path/Uniqueness> .
+
+<http://example.domain.net/path/UsageCML>
+        msv:hasMaximumRatingValueOf     1 ;
+        msv:hasMinimumRequiredRatingOf  1 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "UsageCML"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Documentation> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/UsageCML/> .
 
 :refResource  rdf:type  qb:DimensionProperty ;
         rdf:type    rdf:Property ;
         rdfs:label  "reference resource"@en ;
         rdfs:range  rdfs:Resource .
 
-<urn:uuid:f4161047-6f6d-4961-82ff-972444193880>
-        :measurementValue           10 ;
-        rdf:type                    dqv:QualityMeasurement ;
-        :refResource                <http://example.de/dataset1> ;
-        dqv:value                   10 ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        dqv:isMeasurementOf         :M6 ;
-        :refMetric                  :M6 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 .
+<http://example.domain.net/path/M2>
+        msv:hasRatingValueOf  1 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "At least two decimals are provided."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <http://example.domain.net/path/Precision> .
 
-<urn:uuid:406b894f-0d12-41ab-ae8d-ec2215c6e66c>
-        dqv:value                   1 ;
-        :refMetric                  :M2 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        dqv:isMeasurementOf         :M2 ;
-        :refResource                <http://example.de/dataset1> ;
+<urn:uuid:259c7301-ae0b-465a-9a3f-b617cef5ab10>
         rdf:type                    dqv:QualityMeasurement ;
-        :measurementValue           1 ;
-        dqv:computedOn              <http://example.de/dataset1> .
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M6> ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        :refMetric                  <http://example.domain.net/path/M6> ;
+        :measurementValue           10 ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        dqv:value                   10 ;
+        :refResource                <http://example.de/dataset1> .
 
 msv:MaturityLevel0  dc11:description  "The maturity level which has no requirements and thus applies to every dataset."@en ;
         msv:hasRequiredRatingOf  0 ;
@@ -95,202 +80,156 @@ msv:MaturityLevel0  dc11:description  "The maturity level which has no requireme
         rdfs:label               "Maturity level 0"@en ;
         oa:motivatedBy           msv:Motivation .
 
-:Validity  msv:hasMaximumRatingValueOf  10 ;
-        msv:hasMinimumRequiredRatingOf  0 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Validity"@en ;
-        dqv:inCategory                  :Coherence ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Validity/> .
+<urn:uuid:0763d250-b401-4777-aa67-0a5eec2187be>
+        :measurementValue           1 ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :refMetric                  <http://example.domain.net/path/M8> ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M8> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        :refResource                <http://example.de/dataset1> ;
+        dqv:value                   1 .
 
-ownshaclcorrectness:1
-        rdfs:seeAlso  :M1 .
+mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff
+        rdf:type            dqv:QualityMeasurementDataset ;
+        rdfs:label          "Quality measurement dataset #1"@en ;
+        rdfs:description    "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
+        prov:startedAtTime  "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        qb:structure        :dsd .
 
-<urn:uuid:43895d1b-0ca8-4e38-b069-0d2aea79c47d>
-        :refMetric                  :M4 ;
+<http://stream-ontology.com/maturitymodel/shapes/Correctness/1>
+        rdfs:seeAlso  <http://example.domain.net/path/M1> .
+
+_:b1    qb:dimension  :refMetric ;
+        qb:order      1 .
+
+<urn:uuid:92f5a378-2c33-48c4-a024-926e0a36403a>
+        :refMetric                  <http://example.domain.net/path/M2> ;
         sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
         dqv:value                   1 ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        :refResource                <http://example.de/dataset1> ;
         :measurementValue           1 ;
-        dqv:isMeasurementOf         :M4 ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
         rdf:type                    dqv:QualityMeasurement ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 .
-
-_:b1    qb:dimension  :refDate ;
-        qb:order      2 .
+        dqv:isMeasurementOf         <http://example.domain.net/path/M2> ;
+        :refResource                <http://example.de/dataset1> .
 
 :refMetric  rdf:type  qb:DimensionProperty ;
         rdf:type    rdf:Property ;
         rdfs:label  "reference metric"@en ;
         rdfs:range  dqv:Metric .
 
-:Completeness  rdf:type  dqv:Category ;
-        rdfs:label       "Completeness"@en ;
-        skos:definition  ""@en ;
-        skos:prevLabel   "Completeness"@en .
-
-:M7     msv:hasRatingValueOf  10 ;
+<http://example.domain.net/path/M7>
+        msv:hasRatingValueOf  10 ;
         rdf:type              dqv:Metric ;
         skos:definition       "Values are similar to others."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :Plausibility .
+        dqv:inDimension       <http://example.domain.net/path/Plausibility> .
 
-:Multilingualism  rdf:type  dqv:Category ;
+<http://example.domain.net/path/English>
+        msv:hasMaximumRatingValueOf     1 ;
+        msv:hasMinimumRequiredRatingOf  1 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "English"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Multilingualism> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/English/> .
+
+<http://example.domain.net/path/Multilingualism>
+        rdf:type         dqv:Category ;
         rdfs:label       "Multilingualism"@en ;
         skos:definition  ""@en ;
         skos:prevLabel   "Multilingualism"@en .
 
-mme:c25701d8-0ebd-462f-927e-86330d64c185
-        rdf:type            dqv:QualityMeasurementDataset ;
-        rdfs:label          "Quality measurement dataset #1"@en ;
-        rdfs:description    "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
-        prov:startedAtTime  "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        qb:structure        :dsd .
-
-:M1     msv:hasRatingValueOf  4 ;
+<http://example.domain.net/path/M1>
+        msv:hasRatingValueOf  4 ;
         rdf:type              dqv:Metric ;
         skos:definition       "The source of the result is linked."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :Correctness .
+        dqv:inDimension       <http://example.domain.net/path/Correctness> .
 
-:Correctness  msv:hasMaximumRatingValueOf  4 ;
-        msv:hasMinimumRequiredRatingOf  4 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Correctness"@en ;
-        dqv:inCategory                  :Accuracy ;
-        sh:shapesGraph                  ownshaclcorrectness: .
-
-:Coherence  rdf:type     dqv:Category ;
-        rdfs:label       "Coherence"@en ;
-        skos:definition  ""@en ;
-        skos:prevLabel   "Coherence"@en .
-
-<urn:uuid:8d8b4f4f-3806-4870-8c43-6174e01b3473>
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        rdf:type                    dqv:QualityMeasurement ;
-        :refMetric                  :M7 ;
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        dqv:isMeasurementOf         :M7 ;
-        :refResource                <http://example.de/dataset1> ;
-        :measurementValue           10 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        dqv:value                   10 .
-
-:UsageCML  msv:hasMaximumRatingValueOf  1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "UsageCML"@en ;
-        dqv:inCategory                  :Documentation ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/UsageCML/> .
-
-<urn:uuid:d96add1c-3540-4d98-9492-b246fe2463c5>
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        dqv:value                   1 ;
-        dqv:isMeasurementOf         :M8 ;
-        :refResource                <http://example.de/dataset1> ;
-        rdf:type                    dqv:QualityMeasurement ;
-        :measurementValue           1 ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        :refMetric                  :M8 .
-
-<urn:uuid:66ebba21-615c-4cd1-a864-7eb743ae1493>
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        :refMetric                  :M5 ;
-        :refResource                <http://example.de/dataset1> ;
-        dqv:value                   1 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        :measurementValue           1 ;
-        rdf:type                    dqv:QualityMeasurement ;
-        dqv:isMeasurementOf         :M5 ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 .
-
-:M6     msv:hasRatingValueOf  10 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "Values are in range of the specification."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :Validity .
-
-:German  msv:hasMaximumRatingValueOf    1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "German"@en ;
-        dqv:inCategory                  :Multilingualism ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/German/> .
-
-:Plausibility  msv:hasMaximumRatingValueOf  10 ;
-        msv:hasMinimumRequiredRatingOf  0 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Plausibility"@en ;
-        dqv:inCategory                  :Coherence ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Plausibility/> .
-
-<urn:uuid:e564f861-0eb7-427f-acde-681a967cf46b>
-        dqv:isMeasurementOf         :M3 ;
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        dqv:value                   2 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        :refResource                <http://example.de/dataset1> ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        :refMetric                  :M3 ;
-        :measurementValue           2 ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        rdf:type                    dqv:QualityMeasurement .
-
-_:b4    rdf:type  ownshaclcorrectness:1 .
-
-:Uniqueness  msv:hasMaximumRatingValueOf  1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Uniqueness"@en ;
-        dqv:inCategory                  :Coherence ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Uniqueness/> .
-
-:Accuracy  rdf:type      dqv:Category ;
+<http://example.domain.net/path/Accuracy>
+        rdf:type         dqv:Category ;
         rdfs:label       "Accuracy"@en ;
         skos:definition  ""@en ;
         skos:prevLabel   "Accuracy"@en .
 
-<urn:uuid:30d4a880-9e91-4117-97a6-bffce410a96c>
-        dqv:isMeasurementOf         :M9 ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        rdf:type                    dqv:QualityMeasurement ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        dqv:value                   1 ;
-        :refResource                <http://example.de/dataset1> ;
-        :refMetric                  :M9 ;
-        :measurementValue           1 .
-
-:Conciseness  msv:hasMaximumRatingValueOf  1 ;
+<http://example.domain.net/path/Precision>
+        msv:hasMaximumRatingValueOf     1 ;
         msv:hasMinimumRequiredRatingOf  1 ;
         rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Conciseness"@en ;
-        dqv:inCategory                  :Documentation ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Conciseness/> .
+        rdfs:label                      "Precision"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Accuracy> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Precision/> .
 
-:M5     msv:hasRatingValueOf  1 ;
+<urn:uuid:435b07d9-7dc8-47e3-87fe-37833cd1cf82>
+        :refMetric                  <http://example.domain.net/path/M7> ;
+        :measurementValue           10 ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M7> ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        rdf:type                    dqv:QualityMeasurement ;
+        dqv:value                   10 ;
+        :refResource                <http://example.de/dataset1> ;
+        dqv:computedOn              <http://example.de/dataset1> .
+
+<http://example.domain.net/path/Uniqueness>
+        msv:hasMaximumRatingValueOf     1 ;
+        msv:hasMinimumRequiredRatingOf  1 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Uniqueness"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Coherence> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Uniqueness/> .
+
+<http://example.domain.net/path/M6>
+        msv:hasRatingValueOf  10 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "Values are in range of the specification."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <http://example.domain.net/path/Validity> .
+
+<http://example.domain.net/path/Correctness>
+        msv:hasMaximumRatingValueOf     4 ;
+        msv:hasMinimumRequiredRatingOf  4 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Correctness"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Accuracy> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Correctness/> .
+
+<urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811/5b46ffb5-329b-44d6-866e-f1d2c15382ad>
+        prov:wasAssociatedWith  <http://example.domain.net/path/M1> ;
+        dcterms:date            "2022-06-24T15:51:53.912Z"^^xsd:dateTime ;
+        ns0:testCase            _:b4 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/> ;
+        sh:message              "The ontology should provide some basic metadata, like rdfs:comment, dct:creator, rdfs:label, owl:versionInfo, dct:modified and owl:priorVersion." ;
+        sh:severity             rlog:WARN .
+
+_:b4    rdf:type  <http://stream-ontology.com/maturitymodel/shapes/Correctness/1> .
+
+<urn:uuid:568ecf5d-61bf-40e2-bfd5-82a89f3052ce>
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        :refMetric                  <http://example.domain.net/path/M1> ;
+        :measurementValue           0 ;
+        rdf:type                    dqv:QualityMeasurement ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        dqv:value                   0 ;
+        :refResource                <http://example.de/dataset1> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M1> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
+
+<http://example.domain.net/path/M5>
+        msv:hasRatingValueOf  1 ;
         rdf:type              dqv:Metric ;
         skos:definition       "Documentation files are using common markup languages."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :UsageCML .
-
-<urn:uuid:14ced336-a7d7-4f06-ad7c-c43aa48a1c46>
-        :refDate                    "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        qb:dataSet                  mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        :refMetric                  :M10 ;
-        :refResource                <http://example.de/dataset1> ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        rdf:type                    dqv:QualityMeasurement ;
-        dqv:value                   1 ;
-        dqv:isMeasurementOf         :M10 ;
-        :measurementValue           1 .
+        dqv:inDimension       <http://example.domain.net/path/UsageCML> .
 
 :refDate  rdf:type  qb:DimensionProperty ;
         rdf:type    rdf:Property ;
@@ -299,94 +238,134 @@ _:b4    rdf:type  ownshaclcorrectness:1 .
 
 _:b3    qb:measure  :measurementValue .
 
-<urn:uuid:a7519b9b-23a5-4489-a82c-f46d126c493c/942782fd-1ee3-4922-a31e-c1fb09d974f3>
-        prov:wasAssociatedWith  :M1 ;
-        dcterms:date            "2022-06-23T09:34:45.097Z"^^xsd:dateTime ;
-        ns0:testCase            _:b4 ;
-        rdf:type                ns0:TestCaseResult ;
-        rdf:type                sh:ValidationResult ;
-        prov:wasGeneratedBy     <urn:uuid:a7519b9b-23a5-4489-a82c-f46d126c493c> ;
-        sh:focusNode            <http://stream-ontology.com/matvoc-core/> ;
-        sh:message              "The ontology should provide some basic metadata, like rdfs:comment, dct:creator, rdfs:label, owl:versionInfo, dct:modified and owl:priorVersion." ;
-        sh:severity             rlog:WARN .
+<urn:uuid:8ace83f6-08b3-4582-8021-0d8dc257dcd7>
+        rdf:type                    dqv:QualityMeasurement ;
+        :refResource                <http://example.de/dataset1> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :measurementValue           2 ;
+        :refMetric                  <http://example.domain.net/path/M3> ;
+        dqv:value                   2 ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M3> ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff .
 
-:Documentation  rdf:type  dqv:Category ;
-        rdfs:label       "Documentation"@en ;
-        skos:definition  ""@en ;
-        skos:prevLabel   "Documentation"@en .
+<http://example.domain.net/path/Validity>
+        msv:hasMaximumRatingValueOf     10 ;
+        msv:hasMinimumRequiredRatingOf  0 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Validity"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Coherence> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Validity/> .
 
-:English  msv:hasMaximumRatingValueOf   1 ;
+<http://example.domain.net/path/Conciseness>
+        msv:hasMaximumRatingValueOf     1 ;
         msv:hasMinimumRequiredRatingOf  1 ;
         rdf:type                        dqv:Dimension ;
-        rdfs:label                      "English"@en ;
-        dqv:inCategory                  :Multilingualism ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/English/> .
+        rdfs:label                      "Conciseness"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Documentation> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Conciseness/> .
 
-:M4     msv:hasRatingValueOf  1 ;
+<http://example.domain.net/path/German>
+        msv:hasMaximumRatingValueOf     1 ;
+        msv:hasMinimumRequiredRatingOf  1 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "German"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Multilingualism> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/German/> .
+
+<http://example.domain.net/path/Completeness>
+        rdf:type         dqv:Category ;
+        rdfs:label       "Completeness"@en ;
+        skos:definition  ""@en ;
+        skos:prevLabel   "Completeness"@en .
+
+<http://example.domain.net/path/M4>
+        msv:hasRatingValueOf  1 ;
         rdf:type              dqv:Metric ;
         skos:definition       "Has a low amount of filler words."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :Conciseness .
+        dqv:inDimension       <http://example.domain.net/path/Conciseness> .
+
+<urn:uuid:db4271c7-f626-4208-a498-f97845eb001f>
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        :refMetric                  <http://example.domain.net/path/M4> ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M4> ;
+        :measurementValue           1 ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        dqv:value                   1 ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        :refResource                <http://example.de/dataset1> ;
+        rdf:type                    dqv:QualityMeasurement .
+
+<http://example.domain.net/path/Sensitiveness>
+        msv:hasMaximumRatingValueOf     2 ;
+        msv:hasMinimumRequiredRatingOf  2 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Sensitiveness"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Completeness> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Sensitiveness/> .
 
 :measurementValue  rdf:type  qb:MeasureProperty ;
         rdf:type    rdf:Property ;
         rdfs:label  "measurement severity"@en ;
         rdfs:range  xsd:integer .
 
-:Sensitiveness  msv:hasMaximumRatingValueOf  2 ;
-        msv:hasMinimumRequiredRatingOf  2 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Sensitiveness"@en ;
-        dqv:inCategory                  :Completeness ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Sensitiveness/> .
+<urn:uuid:88edc4f7-8c38-44d5-83ad-5be8b49455a0>
+        dqv:value                   1 ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M9> ;
+        :measurementValue           1 ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        :refMetric                  <http://example.domain.net/path/M9> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        :refResource                <http://example.de/dataset1> .
 
 _:b2    qb:dimension  :refResource ;
         qb:order      3 .
 
-:M9     msv:hasRatingValueOf  1 ;
+<http://example.domain.net/path/M9>
+        msv:hasRatingValueOf  1 ;
         rdf:type              dqv:Metric ;
         skos:definition       "A language detector detected english."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :English .
+        dqv:inDimension       <http://example.domain.net/path/English> .
 
-:M10    msv:hasRatingValueOf  1 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "A language detector detected german."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :German .
-
-<urn:uuid:a7519b9b-23a5-4489-a82c-f46d126c493c>
-        prov:startedAtTime         "2022-06-23T09:34:44.982Z"^^xsd:dateTime ;
-        sh:result                  <urn:uuid:a7519b9b-23a5-4489-a82c-f46d126c493c/942782fd-1ee3-4922-a31e-c1fb09d974f3> ;
-        ns0:testsFailed            "1"^^xsd:nonNegativeInteger ;
-        ns0:source                 <http://example.de/dataset1> ;
-        rdfs:seeAlso               mme:c25701d8-0ebd-462f-927e-86330d64c185 ;
-        ns0:executionType          "shaclTestCaseResult" ;
-        ns0:testsTimeout           "0"^^xsd:nonNegativeInteger ;
-        prov:endedAtTime           "2022-06-23T09:34:45.098Z"^^xsd:dateTime ;
-        rdf:type                   prov:Activity ;
+<urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811>
         ns0:testsError             "0"^^xsd:nonNegativeInteger ;
-        sh:conforms                false ;
-        prov:wasAssociatedWith     <file:///home/kjunghanns/Documents/Coypu/nextflow/maturityModel/shapes.ttl> ;
-        ns0:testsSuceedded         "1"^^xsd:nonNegativeInteger ;
-        prov:wasStartedBy          <http://localhost/> ;
-        ns0:totalIndividualErrors  "1"^^xsd:nonNegativeInteger ;
-        rdf:type                   sh:ValidationReport ;
+        ns0:testsTimeout           "0"^^xsd:nonNegativeInteger ;
+        prov:endedAtTime           "2022-06-24T15:51:53.932Z"^^xsd:dateTime ;
+        rdf:type                   prov:Activity ;
+        prov:startedAtTime         "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
         rdf:type                   ns0:TestExecution ;
-        ns0:testsRun               "2"^^xsd:nonNegativeInteger .
+        ns0:testsRun               "2"^^xsd:nonNegativeInteger ;
+        prov:wasStartedBy          <http://localhost/> ;
+        prov:wasAssociatedWith     <file:///home/kjunghanns/Documents/Coypu/nextflow/maturityModel/shapes.ttl> ;
+        ns0:source                 <http://example.de/dataset1> ;
+        rdfs:seeAlso               mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        rdf:type                   sh:ValidationReport ;
+        sh:conforms                false ;
+        ns0:totalIndividualErrors  "1"^^xsd:nonNegativeInteger ;
+        ns0:testsFailed            "1"^^xsd:nonNegativeInteger ;
+        ns0:executionType          "shaclTestCaseResult" ;
+        ns0:testsSuceedded         "1"^^xsd:nonNegativeInteger ;
+        sh:result                  <urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811/5b46ffb5-329b-44d6-866e-f1d2c15382ad> .
 
-:M3     msv:hasRatingValueOf  2 ;
+<http://example.domain.net/path/Documentation>
+        rdf:type         dqv:Category ;
+        rdfs:label       "Documentation"@en ;
+        skos:definition  ""@en ;
+        skos:prevLabel   "Documentation"@en .
+
+<http://example.domain.net/path/M3>
+        msv:hasRatingValueOf  2 ;
         rdf:type              dqv:Metric ;
         skos:definition       "Was the measurement done by a known device."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       :Sensitiveness .
-
-:Precision  msv:hasMaximumRatingValueOf  1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Precision"@en ;
-        dqv:inCategory                  :Accuracy ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Precision/> .
+        dqv:inDimension       <http://example.domain.net/path/Sensitiveness> .
 
 msv:MaturityLevel1  dc11:description  "The maturity level which has the highest requirements in which all dimensions have to have the maximum rating value."@en ;
         msv:hasRequiredRatingOf  32 ;
@@ -394,3 +373,48 @@ msv:MaturityLevel1  dc11:description  "The maturity level which has the highest 
         rdf:type                 msv:MaturityLevel ;
         rdfs:label               "Maturity level 1"@en ;
         oa:motivatedBy           msv:Motivation .
+
+<http://example.domain.net/path/Coherence>
+        rdf:type         dqv:Category ;
+        rdfs:label       "Coherence"@en ;
+        skos:definition  ""@en ;
+        skos:prevLabel   "Coherence"@en .
+
+<http://example.domain.net/path/M10>
+        msv:hasRatingValueOf  1 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "A language detector detected german."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <http://example.domain.net/path/German> .
+
+<http://example.domain.net/path/Plausibility>
+        msv:hasMaximumRatingValueOf     10 ;
+        msv:hasMinimumRequiredRatingOf  0 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Plausibility"@en ;
+        dqv:inCategory                  <http://example.domain.net/path/Coherence> ;
+        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Plausibility/> .
+
+<urn:uuid:9245baaa-5a2c-45ad-8bc4-fb0ef645d8b8>
+        dqv:value                   1 ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        dqv:isMeasurementOf         <http://example.domain.net/path/M10> ;
+        :refMetric                  <http://example.domain.net/path/M10> ;
+        :measurementValue           1 ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        :refResource                <http://example.de/dataset1> ;
+        rdf:type                    dqv:QualityMeasurement .
+
+<urn:uuid:c66a7aec-6392-4206-936c-6413d4302639>
+        dqv:isMeasurementOf         <http://example.domain.net/path/M5> ;
+        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :refResource                <http://example.de/dataset1> ;
+        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        dqv:value                   1 ;
+        :refMetric                  <http://example.domain.net/path/M5> ;
+        :measurementValue           1 ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
