@@ -1,5 +1,4 @@
 @prefix : <http://stream-ontology.com/maturitymodel/> .
-@prefix mme: <http://stream-ontology.com/maturitymodel/executions/> .
 @prefix rlog: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
@@ -17,104 +16,152 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
 msv:MaturityLevel0  oa:hasTarget  <http://example.de/dataset1> ;
-        oa:hasBody    mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff .
+        oa:hasBody    <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> .
 
 <http://example.de/dataset1>
         msv:hasMaturityLevel  msv:MaturityLevel0 .
 
-<http://stream-ontology.com/maturitymodel/shapes/Correctness/2>
-        rdfs:seeAlso  <http://example.domain.net/path/M2> .
+_:b0    rdf:type  <http://stream-ontology.com/maturitymodel/shapes/English/english-language-tag> .
 
-_:b0    qb:dimension  :refDate ;
-        qb:order      2 .
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelLinking>
+        msv:hasMaximumRatingValueOf     3 ;
+        msv:hasMinimumRequiredRatingOf  2 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Linking"@en ;
+        dqv:inCategory                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelCompleteness> ;
+        sh:shapesGraph                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Linking/> .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/e70fa6fe-f450-4be7-a301-50fba6efc3e2>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10> ;
+        dcterms:date            "2022-07-14T11:50:09.45Z"^^xsd:dateTime ;
+        ns0:testCase            _:b0 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/Entity> ;
+        sh:message              "For each class and property at least a label in english should be available." ;
+        sh:severity             rlog:WARN .
 
 :dsd    qb:component  _:b1 ;
-        qb:component  _:b0 ;
         qb:component  _:b2 ;
         qb:component  _:b3 ;
+        qb:component  _:b4 ;
         rdf:type      qb:DataStructureDefinition .
 
-<http://example.domain.net/path/M8>
-        msv:hasRatingValueOf  1 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "The combination of the values is unique."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/Uniqueness> .
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/30e68143-f34c-479b-831d-5c36bab6e03d>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.54Z"^^xsd:dateTime ;
+        ns0:testCase            _:b5 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/isObservedBy> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
 
-<http://example.domain.net/path/UsageCML>
-        msv:hasMaximumRatingValueOf     1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelInversive>
+        msv:hasMaximumRatingValueOf     2 ;
+        msv:hasMinimumRequiredRatingOf  0 ;
         rdf:type                        dqv:Dimension ;
-        rdfs:label                      "UsageCML"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Documentation> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/UsageCML/> .
+        rdfs:label                      "Inversive"@en ;
+        dqv:inCategory                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelConsistency> ;
+        sh:shapesGraph                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/> .
 
 :refResource  rdf:type  qb:DimensionProperty ;
         rdf:type    rdf:Property ;
         rdfs:label  "reference resource"@en ;
         rdfs:range  rdfs:Resource .
 
-<http://example.domain.net/path/M2>
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM7>
         msv:hasRatingValueOf  1 ;
         rdf:type              dqv:Metric ;
-        skos:definition       "At least two decimals are provided."@en ;
+        skos:definition       "Camel case used in class names."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/Precision> .
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelReadability> .
 
-<urn:uuid:259c7301-ae0b-465a-9a3f-b617cef5ab10>
-        rdf:type                    dqv:QualityMeasurement ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M6> ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        :refMetric                  <http://example.domain.net/path/M6> ;
-        :measurementValue           10 ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        dqv:value                   10 ;
-        :refResource                <http://example.de/dataset1> .
+_:b6    rdf:type  <http://stream-ontology.com/maturitymodel/shapes/English/english-language-tag> .
 
-msv:MaturityLevel0  dc11:description  "The maturity level which has no requirements and thus applies to every dataset."@en ;
+msv:MaturityLevel0  dc11:description  "The maturity level which has no requirements and thus applies to every vocabluary."@en ;
         msv:hasRequiredRatingOf  0 ;
         msv:level                0 ;
         rdf:type                 msv:MaturityLevel ;
         rdfs:label               "Maturity level 0"@en ;
         oa:motivatedBy           msv:Motivation .
 
-<urn:uuid:0763d250-b401-4777-aa67-0a5eec2187be>
-        :measurementValue           1 ;
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelNamespaces>
+        msv:hasMaximumRatingValueOf     5 ;
+        msv:hasMinimumRequiredRatingOf  5 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Namespaces"@en ;
+        dqv:inCategory                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelConsistency> ;
+        sh:shapesGraph                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Namespaces/> .
+
+_:b7    rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
+
+<urn:uuid:40184c40-2371-4d6c-bf5a-7fec7e9c3468>
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        :measurementValue           0 ;
         dqv:computedOn              <http://example.de/dataset1> ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        rdf:type                    dqv:QualityMeasurement ;
-        :refMetric                  <http://example.domain.net/path/M8> ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M8> ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
         sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM2> ;
+        dqv:value                   0 ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM2> ;
+        :refResource                <http://example.de/dataset1> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/Readability/expressive-properties>
+        rdfs:seeAlso  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM8> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1>
+        msv:hasRatingValueOf  1 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "Correct naming of has in relations."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelInversive> .
+
+<urn:uuid:9d7db9b5-89fd-4802-802a-8c8121918c59>
         :refResource                <http://example.de/dataset1> ;
-        dqv:value                   1 .
-
-mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff
-        rdf:type            dqv:QualityMeasurementDataset ;
-        rdfs:label          "Quality measurement dataset #1"@en ;
-        rdfs:description    "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
-        prov:startedAtTime  "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        qb:structure        :dsd .
-
-<http://stream-ontology.com/maturitymodel/shapes/Correctness/1>
-        rdfs:seeAlso  <http://example.domain.net/path/M1> .
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        :measurementValue           0 ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:value                   0 ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        dqv:computedOn              <http://example.de/dataset1> .
 
 _:b1    qb:dimension  :refMetric ;
         qb:order      1 .
 
-<urn:uuid:92f5a378-2c33-48c4-a024-926e0a36403a>
-        :refMetric                  <http://example.domain.net/path/M2> ;
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/223b4342-3825-4364-a971-3e9114457564>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.541Z"^^xsd:dateTime ;
+        ns0:testCase            _:b8 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/resultsIn> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelConciseness>
+        rdf:type         dqv:Category ;
+        rdfs:label       "Conciseness"@en ;
+        skos:definition  ""@en ;
+        skos:prevLabel   "Conciseness"@en .
+
+<urn:uuid:50a42422-4138-4c30-acdf-b07ecf5f7112>
+        :measurementValue           1 ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        rdf:type                    dqv:QualityMeasurement ;
         sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
         dqv:value                   1 ;
-        :measurementValue           1 ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        rdf:type                    dqv:QualityMeasurement ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M2> ;
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM7> ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM7> ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
         :refResource                <http://example.de/dataset1> .
 
 :refMetric  rdf:type  qb:DimensionProperty ;
@@ -122,299 +169,445 @@ _:b1    qb:dimension  :refMetric ;
         rdfs:label  "reference metric"@en ;
         rdfs:range  dqv:Metric .
 
-<http://example.domain.net/path/M7>
-        msv:hasRatingValueOf  10 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "Values are similar to others."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/Plausibility> .
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/f2d30638-253d-4054-b405-a6dbf2514523>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.541Z"^^xsd:dateTime ;
+        ns0:testCase            _:b9 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/startedAt> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
 
-<http://example.domain.net/path/English>
-        msv:hasMaximumRatingValueOf     1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/13f1529d-afdd-4b33-86a4-0064c6038c21>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM2> ;
+        dcterms:date            "2022-07-14T11:50:09.546Z"^^xsd:dateTime ;
+        ns0:testCase            _:b10 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/isRunOf> ;
+        sh:message              "If there is a relation <> inverse-relation pair, the inverse relation should be prefixed with is and suffixed with Of." ;
+        sh:severity             rlog:WARN .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/fee034cc-ebd8-462c-922b-6346cc08bede>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.541Z"^^xsd:dateTime ;
+        ns0:testCase            _:b11 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/isRunOf> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/Readability/expressive-classes>
+        rdfs:seeAlso  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM8> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelEnglish>
+        msv:hasMaximumRatingValueOf     7 ;
+        msv:hasMinimumRequiredRatingOf  7 ;
         rdf:type                        dqv:Dimension ;
         rdfs:label                      "English"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Multilingualism> ;
+        dqv:inCategory                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelMultilingualism> ;
         sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/English/> .
 
-<http://example.domain.net/path/Multilingualism>
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM6>
+        msv:hasRatingValueOf  1 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "Classes or properties of other vocabularies are used ."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelLinking> .
+
+_:b5    rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
+
+<urn:uuid:f4b80e70-a5d1-4f45-ab26-c54c5f12b0e5>
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM9> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM9> ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        dqv:value                   1 ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :measurementValue           1 ;
+        :refResource                <http://example.de/dataset1> .
+
+_:b12   rdf:type  <http://stream-ontology.com/maturitymodel/shapes/English/english-language-tag> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/Metadata/ontology-details>
+        rdfs:seeAlso  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM4> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelDocumentation>
+        rdf:type         dqv:Category ;
+        rdfs:label       "Documentation"@en ;
+        skos:definition  ""@en ;
+        skos:prevLabel   "Documentation"@en .
+
+<urn:uuid:df0e7088-8108-4c9a-a7f1-6c56f13d2c94>
+        dqv:value                   0 ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10> ;
+        :refResource                <http://example.de/dataset1> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        :measurementValue           0 ;
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10> ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        rdf:type                    dqv:QualityMeasurement ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
+
+<urn:uuid:cee992fa-a4fc-43b0-aa82-cca3d609feb6>
+        dqv:value                   0 ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM4> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM4> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        :refResource                <http://example.de/dataset1> ;
+        :measurementValue           0 ;
+        rdf:type                    dqv:QualityMeasurement .
+
+_:b13   rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM5>
+        msv:hasRatingValueOf  2 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "Common vocabularies are used."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelLinking> .
+
+_:b4    qb:measure  :measurementValue .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/Readability/class_names_camel_case>
+        rdfs:seeAlso  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM7> .
+
+_:b14   rdf:type  <http://stream-ontology.com/maturitymodel/shapes/English/english-language-tag> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/inverse-of-correct-naming>
+        rdfs:seeAlso  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM2> .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/b5e615cb-1735-4a64-9126-1652080a6ce6>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.54Z"^^xsd:dateTime ;
+        ns0:testCase            _:b15 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/defines> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
+
+<urn:uuid:905498f8-3055-4e13-992d-78f9bb7569a9>
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM3> ;
+        dqv:value                   5 ;
+        :refResource                <http://example.de/dataset1> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM3> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :measurementValue           5 .
+
+_:b9    rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
+
+_:b16   rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/e1091965-47a3-4d3c-9c0c-463851191282>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.541Z"^^xsd:dateTime ;
+        ns0:testCase            _:b16 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/isSampleOf> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM4>
+        msv:hasRatingValueOf  3 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "The ontology does provide the minimum of metadata."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelMetadata> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelMultilingualism>
         rdf:type         dqv:Category ;
         rdfs:label       "Multilingualism"@en ;
         skos:definition  ""@en ;
         skos:prevLabel   "Multilingualism"@en .
-
-<http://example.domain.net/path/M1>
-        msv:hasRatingValueOf  4 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "The source of the result is linked."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/Correctness> .
-
-<http://example.domain.net/path/Accuracy>
-        rdf:type         dqv:Category ;
-        rdfs:label       "Accuracy"@en ;
-        skos:definition  ""@en ;
-        skos:prevLabel   "Accuracy"@en .
-
-<http://example.domain.net/path/Precision>
-        msv:hasMaximumRatingValueOf     1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Precision"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Accuracy> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Precision/> .
-
-<urn:uuid:435b07d9-7dc8-47e3-87fe-37833cd1cf82>
-        :refMetric                  <http://example.domain.net/path/M7> ;
-        :measurementValue           10 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M7> ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        rdf:type                    dqv:QualityMeasurement ;
-        dqv:value                   10 ;
-        :refResource                <http://example.de/dataset1> ;
-        dqv:computedOn              <http://example.de/dataset1> .
-
-<http://example.domain.net/path/Uniqueness>
-        msv:hasMaximumRatingValueOf     1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Uniqueness"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Coherence> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Uniqueness/> .
-
-<http://example.domain.net/path/M6>
-        msv:hasRatingValueOf  10 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "Values are in range of the specification."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/Validity> .
-
-<http://example.domain.net/path/Correctness>
-        msv:hasMaximumRatingValueOf     4 ;
-        msv:hasMinimumRequiredRatingOf  4 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Correctness"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Accuracy> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Correctness/> .
-
-<urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811/5b46ffb5-329b-44d6-866e-f1d2c15382ad>
-        prov:wasAssociatedWith  <http://example.domain.net/path/M1> ;
-        dcterms:date            "2022-06-24T15:51:53.912Z"^^xsd:dateTime ;
-        ns0:testCase            _:b4 ;
-        rdf:type                ns0:TestCaseResult ;
-        rdf:type                sh:ValidationResult ;
-        prov:wasGeneratedBy     <urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811> ;
-        sh:focusNode            <http://stream-ontology.com/matvoc-core/> ;
-        sh:message              "The ontology should provide some basic metadata, like rdfs:comment, dct:creator, rdfs:label, owl:versionInfo, dct:modified and owl:priorVersion." ;
-        sh:severity             rlog:WARN .
-
-_:b4    rdf:type  <http://stream-ontology.com/maturitymodel/shapes/Correctness/1> .
-
-<urn:uuid:568ecf5d-61bf-40e2-bfd5-82a89f3052ce>
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        :refMetric                  <http://example.domain.net/path/M1> ;
-        :measurementValue           0 ;
-        rdf:type                    dqv:QualityMeasurement ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        dqv:value                   0 ;
-        :refResource                <http://example.de/dataset1> ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M1> ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-<http://example.domain.net/path/M5>
-        msv:hasRatingValueOf  1 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "Documentation files are using common markup languages."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/UsageCML> .
 
 :refDate  rdf:type  qb:DimensionProperty ;
         rdf:type    rdf:Property ;
         rdfs:label  "reference date"@en ;
         rdfs:range  dcterms:date .
 
-_:b3    qb:measure  :measurementValue .
+_:b3    qb:dimension  :refResource ;
+        qb:order      3 .
 
-<urn:uuid:8ace83f6-08b3-4582-8021-0d8dc257dcd7>
-        rdf:type                    dqv:QualityMeasurement ;
-        :refResource                <http://example.de/dataset1> ;
-        dqv:computedOn              <http://example.de/dataset1> ;
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelMetadata>
+        msv:hasMaximumRatingValueOf     3 ;
+        msv:hasMinimumRequiredRatingOf  3 ;
+        rdf:type                        dqv:Dimension ;
+        rdfs:label                      "Metadata"@en ;
+        dqv:inCategory                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelCompleteness> ;
+        sh:shapesGraph                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Metadata/> .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/b6fa2be8-de6d-4cef-91e0-a4128b34282e>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM2> ;
+        dcterms:date            "2022-07-14T11:50:09.546Z"^^xsd:dateTime ;
+        ns0:testCase            _:b17 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/isObservedBy> ;
+        sh:message              "If there is a relation <> inverse-relation pair, the inverse relation should be prefixed with is and suffixed with Of." ;
+        sh:severity             rlog:WARN .
+
+_:b11   rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
+
+<urn:uuid:e1e2dda9-e4a5-454d-afc0-0275e8a33daf>
         :measurementValue           2 ;
-        :refMetric                  <http://example.domain.net/path/M3> ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM8> ;
+        :refResource                <http://example.de/dataset1> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
         dqv:value                   2 ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
+        dqv:computedOn              <http://example.de/dataset1> ;
         sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M3> ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff .
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM8> .
 
-<http://example.domain.net/path/Validity>
-        msv:hasMaximumRatingValueOf     10 ;
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4>
+        rdf:type            dqv:QualityMeasurementDataset ;
+        rdfs:label          "Quality measurement dataset #1"@en ;
+        rdfs:description    "Quality measurement dataset which groups dqv:QualityMeasurement."@en ;
+        prov:startedAtTime  "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        qb:structure        :dsd .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/47d819d5-4c41-4927-b98e-bbbb6256c676>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM4> ;
+        dcterms:date            "2022-07-14T11:50:09.614Z"^^xsd:dateTime ;
+        ns0:testCase            _:b18 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/> ;
+        sh:message              "The ontology should provide some basic metadata, like rdfs:comment, dct:creator, rdfs:label, owl:versionInfo, dct:modified and owl:priorVersion." ;
+        sh:severity             rlog:WARN .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10>
+        msv:hasRatingValueOf  7 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "A language detector detected english."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelEnglish> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelReadability>
+        msv:hasMaximumRatingValueOf     3 ;
         msv:hasMinimumRequiredRatingOf  0 ;
         rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Validity"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Coherence> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Validity/> .
+        rdfs:label                      "Readability"@en ;
+        dqv:inCategory                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelConciseness> ;
+        sh:shapesGraph                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Readability/> .
 
-<http://example.domain.net/path/Conciseness>
-        msv:hasMaximumRatingValueOf     1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Conciseness"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Documentation> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Conciseness/> .
-
-<http://example.domain.net/path/German>
-        msv:hasMaximumRatingValueOf     1 ;
-        msv:hasMinimumRequiredRatingOf  1 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "German"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Multilingualism> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/German/> .
-
-<http://example.domain.net/path/Completeness>
-        rdf:type         dqv:Category ;
-        rdfs:label       "Completeness"@en ;
-        skos:definition  ""@en ;
-        skos:prevLabel   "Completeness"@en .
-
-<http://example.domain.net/path/M4>
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM9>
         msv:hasRatingValueOf  1 ;
         rdf:type              dqv:Metric ;
-        skos:definition       "Has a low amount of filler words."@en ;
+        skos:definition       "The URI of the HTML documentation is included in the ontologies metadata."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/Conciseness> .
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelAccessible> .
 
-<urn:uuid:db4271c7-f626-4208-a498-f97845eb001f>
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        :refMetric                  <http://example.domain.net/path/M4> ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M4> ;
-        :measurementValue           1 ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        dqv:value                   1 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        :refResource                <http://example.de/dataset1> ;
-        rdf:type                    dqv:QualityMeasurement .
-
-<http://example.domain.net/path/Sensitiveness>
-        msv:hasMaximumRatingValueOf     2 ;
-        msv:hasMinimumRequiredRatingOf  2 ;
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelAccessible>
+        msv:hasMaximumRatingValueOf     1 ;
+        msv:hasMinimumRequiredRatingOf  1 ;
         rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Sensitiveness"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Completeness> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Sensitiveness/> .
+        rdfs:label                      "Accessible"@en ;
+        dqv:inCategory                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelDocumentation> ;
+        sh:shapesGraph                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Accessible/> .
+
+_:b8    rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
+
+msv:MaturityLevel2  dc11:description  "The vocabulary fulfills all requirements."@en ;
+        msv:hasRequiredRatingOf  24 ;
+        msv:level                2 ;
+        rdf:type                 msv:MaturityLevel ;
+        rdfs:label               "Maturity level 2"@en ;
+        oa:motivatedBy           msv:Motivation .
+
+<http://stream-ontology.com/maturitymodel/shapes/English/english-language-tag>
+        rdfs:seeAlso  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10> .
+
+_:b17   rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/inverse-of-correct-naming> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM3>
+        msv:hasRatingValueOf  5 ;
+        rdf:type              dqv:Metric ;
+        skos:definition       "Ontology namespace does not include example.com and has a valid ending character."@en ;
+        dqv:expectedDataType  xsd:integer ;
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelNamespaces> .
 
 :measurementValue  rdf:type  qb:MeasureProperty ;
         rdf:type    rdf:Property ;
         rdfs:label  "measurement severity"@en ;
         rdfs:range  xsd:integer .
 
-<urn:uuid:88edc4f7-8c38-44d5-83ad-5be8b49455a0>
+<urn:uuid:1398712b-34b4-4685-bb6d-3dd983c47904>
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM6> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
         dqv:value                   1 ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M9> ;
-        :measurementValue           1 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        :refMetric                  <http://example.domain.net/path/M9> ;
-        dqv:computedOn              <http://example.de/dataset1> ;
         rdf:type                    dqv:QualityMeasurement ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        :refResource                <http://example.de/dataset1> .
+        :refResource                <http://example.de/dataset1> ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        :measurementValue           1 ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM6> .
 
-_:b2    qb:dimension  :refResource ;
-        qb:order      3 .
+_:b2    qb:dimension  :refDate ;
+        qb:order      2 .
 
-<http://example.domain.net/path/M9>
-        msv:hasRatingValueOf  1 ;
-        rdf:type              dqv:Metric ;
-        skos:definition       "A language detector detected english."@en ;
-        dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/English> .
-
-<urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811>
-        ns0:testsError             "0"^^xsd:nonNegativeInteger ;
-        ns0:testsTimeout           "0"^^xsd:nonNegativeInteger ;
-        prov:endedAtTime           "2022-06-24T15:51:53.932Z"^^xsd:dateTime ;
-        rdf:type                   prov:Activity ;
-        prov:startedAtTime         "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        rdf:type                   ns0:TestExecution ;
-        ns0:testsRun               "2"^^xsd:nonNegativeInteger ;
-        prov:wasStartedBy          <http://localhost/> ;
-        prov:wasAssociatedWith     <file:///home/kjunghanns/Documents/Coypu/nextflow/maturityModel/shapes.ttl> ;
-        ns0:source                 <http://example.de/dataset1> ;
-        rdfs:seeAlso               mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        rdf:type                   sh:ValidationReport ;
-        sh:conforms                false ;
-        ns0:totalIndividualErrors  "1"^^xsd:nonNegativeInteger ;
-        ns0:testsFailed            "1"^^xsd:nonNegativeInteger ;
-        ns0:executionType          "shaclTestCaseResult" ;
-        ns0:testsSuceedded         "1"^^xsd:nonNegativeInteger ;
-        sh:result                  <urn:uuid:9b4d500f-4345-47e1-a643-d9af8095b811/5b46ffb5-329b-44d6-866e-f1d2c15382ad> .
-
-<http://example.domain.net/path/Documentation>
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelCompleteness>
         rdf:type         dqv:Category ;
-        rdfs:label       "Documentation"@en ;
+        rdfs:label       "Completeness"@en ;
         skos:definition  ""@en ;
-        skos:prevLabel   "Documentation"@en .
+        skos:prevLabel   "Completeness"@en .
 
-<http://example.domain.net/path/M3>
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/b0269475-8f0c-4b90-b786-c684bf4ec226>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.54Z"^^xsd:dateTime ;
+        ns0:testCase            _:b13 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/finishedAt> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
+
+<urn:uuid:47cb08d5-574f-473c-8dfb-b7a605353277>
+        :refMetric                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM5> ;
+        dqv:computedOn              <http://example.de/dataset1> ;
+        qb:dataSet                  <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+        :refDate                    "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        dqv:value                   2 ;
+        rdf:type                    dqv:QualityMeasurement ;
+        :refResource                <http://example.de/dataset1> ;
+        :measurementValue           2 ;
+        dqv:isMeasurementOf         <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM5> .
+
+_:b10   rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/inverse-of-correct-naming> .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations>
+        rdfs:seeAlso  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/78da3ce7-63ba-4e1a-bf7f-a195808ba947>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10> ;
+        dcterms:date            "2022-07-14T11:50:09.45Z"^^xsd:dateTime ;
+        ns0:testCase            _:b6 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/Material> ;
+        sh:message              "For each class and property at least a label in english should be available." ;
+        sh:severity             rlog:WARN .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/3032f7dd-38bb-49f9-a361-6e36b6f1fc63>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10> ;
+        dcterms:date            "2022-07-14T11:50:09.45Z"^^xsd:dateTime ;
+        ns0:testCase            _:b14 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/Sample> ;
+        sh:message              "For each class and property at least a label in english should be available." ;
+        sh:severity             rlog:WARN .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM8>
         msv:hasRatingValueOf  2 ;
         rdf:type              dqv:Metric ;
-        skos:definition       "Was the measurement done by a known device."@en ;
+        skos:definition       "Classes and properties are expressive."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/Sensitiveness> .
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelReadability> .
 
-msv:MaturityLevel1  dc11:description  "The maturity level which has the highest requirements in which all dimensions have to have the maximum rating value."@en ;
-        msv:hasRequiredRatingOf  32 ;
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/57dd8ab0-2497-453a-8922-90d6bfafcce0>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM1> ;
+        dcterms:date            "2022-07-14T11:50:09.541Z"^^xsd:dateTime ;
+        ns0:testCase            _:b7 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            <http://stream-ontology.com/matvoc-core/restrictedBy> ;
+        sh:message              "Properties should start with has." ;
+        sh:severity             rlog:WARN .
+
+_:b18   rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Metadata/ontology-details> .
+
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b>
+        rdf:type                   ns0:TestExecution ;
+        ns0:testsError             "0"^^xsd:nonNegativeInteger ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/30e68143-f34c-479b-831d-5c36bab6e03d> ;
+        ns0:testsFailed            "4"^^xsd:nonNegativeInteger ;
+        prov:wasStartedBy          <http://localhost/> ;
+        sh:conforms                false ;
+        ns0:executionType          "shaclTestCaseResult" ;
+        ns0:source                 <http://example.de/dataset1> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/b5e615cb-1735-4a64-9126-1652080a6ce6> ;
+        ns0:testsTimeout           "0"^^xsd:nonNegativeInteger ;
+        ns0:totalIndividualErrors  "15"^^xsd:nonNegativeInteger ;
+        prov:startedAtTime         "2022-07-14T11:50:09.248Z"^^xsd:dateTime ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/f2d30638-253d-4054-b405-a6dbf2514523> ;
+        prov:endedAtTime           "2022-07-14T11:50:09.616Z"^^xsd:dateTime ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/13f1529d-afdd-4b33-86a4-0064c6038c21> ;
+        rdf:type                   sh:ValidationReport ;
+        rdfs:seeAlso               <https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/77a311b5-a4bb-4047-8f57-e39daaeb2bf4> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/57dd8ab0-2497-453a-8922-90d6bfafcce0> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/b0269475-8f0c-4b90-b786-c684bf4ec226> ;
+        rdf:type                   prov:Activity ;
+        ns0:testsRun               "7"^^xsd:nonNegativeInteger ;
+        ns0:testsSuceedded         "3"^^xsd:nonNegativeInteger ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/b6fa2be8-de6d-4cef-91e0-a4128b34282e> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/78da3ce7-63ba-4e1a-bf7f-a195808ba947> ;
+        prov:wasAssociatedWith     <file:///home/kjunghanns/Documents/Coypu/nextflow/maturityModel/tests/allTests.ttl> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/3032f7dd-38bb-49f9-a361-6e36b6f1fc63> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/e8561cde-8ea7-4d35-80a0-5b2dd3001ea6> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/223b4342-3825-4364-a971-3e9114457564> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/e70fa6fe-f450-4be7-a301-50fba6efc3e2> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/e1091965-47a3-4d3c-9c0c-463851191282> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/47d819d5-4c41-4927-b98e-bbbb6256c676> ;
+        sh:result                  <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/fee034cc-ebd8-462c-922b-6346cc08bede> .
+
+msv:MaturityLevel1  dc11:description  "The vocabulary fulfills the basic requirements to be used by others."@en ;
+        msv:hasRequiredRatingOf  18 ;
         msv:level                1 ;
         rdf:type                 msv:MaturityLevel ;
         rdfs:label               "Maturity level 1"@en ;
         oa:motivatedBy           msv:Motivation .
 
-<http://example.domain.net/path/Coherence>
-        rdf:type         dqv:Category ;
-        rdfs:label       "Coherence"@en ;
-        skos:definition  ""@en ;
-        skos:prevLabel   "Coherence"@en .
+_:b15   rdf:type  <https://github.com/AKSW/rdf-maturitylevel-pipeline/Inversive/has-in-relations> .
 
-<http://example.domain.net/path/M10>
+<urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b/e8561cde-8ea7-4d35-80a0-5b2dd3001ea6>
+        prov:wasAssociatedWith  <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM10> ;
+        dcterms:date            "2022-07-14T11:50:09.449Z"^^xsd:dateTime ;
+        ns0:testCase            _:b12 ;
+        rdf:type                ns0:TestCaseResult ;
+        rdf:type                sh:ValidationResult ;
+        prov:wasGeneratedBy     <urn:uuid:49d9899d-34f7-4c53-8d1e-b45bb19b8f1b> ;
+        sh:focusNode            ns0:ManualTestCase ;
+        sh:message              "For each class and property at least a label in english should be available." ;
+        sh:severity             rlog:WARN .
+
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelM2>
         msv:hasRatingValueOf  1 ;
         rdf:type              dqv:Metric ;
-        skos:definition       "A language detector detected german."@en ;
+        skos:definition       "Correct naming of inversive defined properties."@en ;
         dqv:expectedDataType  xsd:integer ;
-        dqv:inDimension       <http://example.domain.net/path/German> .
+        dqv:inDimension       <https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelInversive> .
 
-<http://example.domain.net/path/Plausibility>
-        msv:hasMaximumRatingValueOf     10 ;
-        msv:hasMinimumRequiredRatingOf  0 ;
-        rdf:type                        dqv:Dimension ;
-        rdfs:label                      "Plausibility"@en ;
-        dqv:inCategory                  <http://example.domain.net/path/Coherence> ;
-        sh:shapesGraph                  <http://stream-ontology.com/maturitymodel/shapes/Plausibility/> .
-
-<urn:uuid:9245baaa-5a2c-45ad-8bc4-fb0ef645d8b8>
-        dqv:value                   1 ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        dqv:isMeasurementOf         <http://example.domain.net/path/M10> ;
-        :refMetric                  <http://example.domain.net/path/M10> ;
-        :measurementValue           1 ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        :refResource                <http://example.de/dataset1> ;
-        rdf:type                    dqv:QualityMeasurement .
-
-<urn:uuid:c66a7aec-6392-4206-936c-6413d4302639>
-        dqv:isMeasurementOf         <http://example.domain.net/path/M5> ;
-        qb:dataSet                  mme:9b84d761-1a1d-43fa-b557-6f1c35c4bbff ;
-        rdf:type                    dqv:QualityMeasurement ;
-        :refResource                <http://example.de/dataset1> ;
-        :refDate                    "2022-06-24T15:51:53.736Z"^^xsd:dateTime ;
-        dqv:value                   1 ;
-        :refMetric                  <http://example.domain.net/path/M5> ;
-        :measurementValue           1 ;
-        dqv:computedOn              <http://example.de/dataset1> ;
-        sdmx-attribute:unitMeasure  <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
+<https://github.com/AKSW/rdf-maturitylevel-pipeline/maturitymodelConsistency>
+        rdf:type         dqv:Category ;
+        rdfs:label       "Consistency"@en ;
+        skos:definition  ""@en ;
+        skos:prevLabel   "Consistency"@en .

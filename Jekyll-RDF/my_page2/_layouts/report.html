@@ -56,7 +56,7 @@ SELECT (SUM(?a) as ?x) WHERE {
 }
 {% endcapture %}
 
-<h1>Quality dimension reports for {{ page.rdf | replace: "http://stream-ontology.com/maturitymodel/executions/", "" }} execution</h1>
+<h1>Quality dimension reports for {{ page.rdf | split: "/" | last }} execution</h1>
 {{ page.rdf | rdf_property: "rdfs:label" }} started <mark>{{ page.rdf | rdf_property: "prov:startedAtTime" }}</mark>
 <br>
 {% assign rating = page.rdf | sparql_query: overall_rating_query | first %}

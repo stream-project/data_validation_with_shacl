@@ -8,7 +8,7 @@ plugins:
 jekyll_rdf:
     path: "_data/report.ttl"
     default_template: "default"
-    baseiri: "http://stream-ontology.com/maturitymodel/executions/"
+    baseiri: "https://github.com/AKSW/rdf-maturitylevel-pipeline/executions/"
     include_blank: true
     class_template_mappings:
         "http://www.w3.org/ns/dqv#QualityMeasurementDataset": "report.html"
