@@ -4,9 +4,10 @@
 git clone https://github.com/AKSW/rdf-maturitylevel-pipeline.git pipeline
 
 # Nextflow
+cd pipeline
 mkdir /opt/nextflow
 cd /opt/nextflow
-wget -qO- https://github.com/nextflow-io/nextflow/releases/download/v22.04.1/nextflow-22.04.1-all
+wget -q -O nextflow https://github.com/nextflow-io/nextflow/releases/download/v22.04.1/nextflow-22.04.1-all
 chmod +x nextflow
 
 # Pipe

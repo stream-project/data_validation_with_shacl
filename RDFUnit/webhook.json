@@ -12,6 +12,10 @@
          {
             "source":"payload",
             "name":"id"
+         },
+         {
+            "source":"payload",
+            "name":"repository"
          }
       ],
       "trigger-rule":{

@@ -11,6 +11,7 @@ services:
         SPARQL_ENDPOINT: ""
         SPARQL_GRAPH_DATA: "http://test.de/"
         SPARQL_GRAPH_SHAPES: "http://test.de/shapes/"
+        SPARQL_GRAPH_MM: "http://test.de/mm/"
 
   jekyllrdf:
      build: ./Jekyll-RDF/
