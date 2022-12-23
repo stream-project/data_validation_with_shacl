@@ -24,3 +24,4 @@ This is a Jekyll container with the Jekyll-RDF plugin installed. It uses the ttl
 * using graph URIs based on dataset metadata
 * use maturity model for material data
 * Make also datasets from DSMS work
+* report should visual indicate the metric status (red=failed, green=success)
